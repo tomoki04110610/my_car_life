@@ -21,7 +21,8 @@
 - 他の人がどんなメンテナンスを行っているか検索する時
 ​
 ## 設計書
-後ほど作成予定
+後ほど作成予定<br>
+[ER図](https://drive.google.com/file/d/1GDxDdQQAa71xxGwXjV4QfT-caq15mwz3/view?usp=sharing)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
