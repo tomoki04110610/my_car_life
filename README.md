@@ -22,6 +22,7 @@
 ​
 ## 設計書
 後ほど作成予定<br>
+[実装機能リスト](https://docs.google.com/spreadsheets/d/1FHeK0-9wnl81rhhS32VWPM6Vr1RX00qmzDoQNSH0STU/edit?usp=sharing)<br>
 [ER図](https://drive.google.com/file/d/1GDxDdQQAa71xxGwXjV4QfT-caq15mwz3/view?usp=sharing)
 ​
 ## 開発環境
