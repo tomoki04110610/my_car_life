@@ -77,6 +77,8 @@ Rails.application.configure do
   config.hosts << "acae089417f3452ca27ff3a9d5a4e2ea"
   config.hosts.clear
 
+  config.active_job.queue_adapter = :inline
+
 end
 
 
