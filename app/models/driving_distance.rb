@@ -1,0 +1,2 @@
+class DrivingDistance < ApplicationRecord
+end
