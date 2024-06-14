@@ -6,5 +6,8 @@
   <h4>本文</h4>
   <%= f.text_area :body %>
 
+  <h4>ジャンル</h4>
+  <%= f.collection_select :genre_name, Genre.genre_names.keys, :to_s, :titleize, prompt: "ジャンルを選択してください" %>
+
   <%= f.submit '投稿'%>
 <% end %>
