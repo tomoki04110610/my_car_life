@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @uses = User.all
   end
 
   def edit

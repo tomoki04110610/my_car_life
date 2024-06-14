@@ -22,6 +22,15 @@
         <li>
           <%= link_to "アバウトページ", about_path %>
         </li>
+        <li>
+          <%= link_to "投稿一覧", posts_path %>
+        </li>
+        <li>
+          <%= link_to "新規投稿", new_post_path %>
+        </li>
+        <li>
+          <%= link_to "ユーザー一覧", users_path %>
+        </li>
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
