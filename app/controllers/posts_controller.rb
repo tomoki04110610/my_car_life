@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, genres_attributes: [:genre_name])
+    params.require(:post).permit(:title, :body, :genre_name, genres_attributes: [:genre_name])
   end
 
 end
