@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @uses = User.all
+    @users = User.all
   end
 
   def edit
   end
-  
+
   def mypage
     @user = current_user
   end
