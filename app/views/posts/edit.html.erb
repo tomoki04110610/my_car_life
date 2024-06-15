@@ -1,2 +1,17 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h1>投稿編集画面</h1>
+
+<%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+
+  <h4>本文</h4>
+  <%= f.text_area :body %>
+
+  <h4>ジャンル</h4>
+  <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+
+  <%= f.submit '更新' %>
+
+<% end %>
+
