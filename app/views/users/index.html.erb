@@ -2,6 +2,6 @@
 <% @users.each do |user| %>
   <p>ニックネーム</p>
   <span>
-    <%= link_to user.nickname, users_path(user.id)%>
+    <%= link_to user.nickname, user_path(user.id)%>
   </span>
 <% end %>

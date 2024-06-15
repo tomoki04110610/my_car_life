@@ -1,0 +1,7 @@
+<h1>新規車種登録</h1>
+<%= form_with model: @Car_model do |f| %>
+  <h4>車種名</h4>
+  <%= f.text_field :name %>
+
+  <%= f.submit '登録' %>
+<% end %>
