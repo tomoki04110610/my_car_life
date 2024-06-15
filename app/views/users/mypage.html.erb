@@ -1,0 +1,8 @@
+<h1>マイページ</h1>
+
+<h4>ニックネーム</h4>
+<%= @user.nickname %>
+<h4>登録車種名</h4>
+<% @user.car_models.each do |car_model|%>
+  <p><%= car_model.name %></p>
+<% end %>

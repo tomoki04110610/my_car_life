@@ -4,5 +4,7 @@
 <p><%= @user.nickname %></p>
 
 <h2>車種</h2>
-<p><%= @user.car_model.name %></p>
+<% @user.car_models.each do |car_model| %>
+    <p><%= car_model.name %></p>
+<% end %>
 

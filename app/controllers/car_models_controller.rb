@@ -1,18 +1,12 @@
 class CarModelsController < ApplicationController
   def new
-    @car_model = Car_model.new
+    @car_model = CarModel.new
   end
 
   def create
-    car_model = Car_model.new(car_model_params)
+    car_model = current_user.car_models.new(car_model_params)
     car_model.save
-    redirect_to '/users/:id'
-  end
-
-  def index
-  end
-
-  def show
+    redirect_to user_path(current_user.id)
   end
 
   def edit
