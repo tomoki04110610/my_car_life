@@ -1,0 +1,7 @@
+<h1>走行距離登録</h1>
+<%= form_with model: @driving_distance do |f| %>
+  <h4>走行距離</h4>
+  <%= f.text_field :distance %>
+
+  <%= f.submit '登録' %>
+<% end %>

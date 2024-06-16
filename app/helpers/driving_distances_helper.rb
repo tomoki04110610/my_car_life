@@ -1,0 +1,2 @@
+module DrivingDistancesHelper
+end

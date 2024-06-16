@@ -5,5 +5,13 @@
 <h4>登録車種名</h4>
 <% @user.car_models.each do |car_model|%>
   <p><%= car_model.name %></p>
-  <%= link_to "削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  <% latest_driving_distance = DrivingDistance.order(created_at: :desc).first %>
+
+    <% if latest_driving_distance %>
+      <h4>最新の走行距離</h4>
+      <p><%= latest_driving_distance.distance %></p>
+    <% else %>
+      <p>走行距離が登録されていません。</p>
+    <% end %>
 <% end %>
