@@ -5,8 +5,11 @@ class CarModelsController < ApplicationController
 
   def create
     car_model = current_user.car_models.new(car_model_params)
-    car_model.save
-    redirect_to mypage_path
+    if car_model.save
+      redirect_to mypage_path
+    else
+      redirect_to new_car_model_path
+    end
   end
 
   def edit
