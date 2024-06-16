@@ -5,5 +5,5 @@
 <h4>登録車種名</h4>
 <% @user.car_models.each do |car_model|%>
   <p><%= car_model.name %></p>
-  <%= link_to%>
+  <%= link_to "削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
