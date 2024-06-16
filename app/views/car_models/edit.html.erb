@@ -1,2 +1,9 @@
-<h1>CarModels#edit</h1>
-<p>Find me in app/views/car_models/edit.html.erb</p>
+<h1>車種名編集画面</h1>
+<%= form_with model: @car_model do |f| %>
+
+  <h4>車種名</h4>
+  <%= f.text_field :name%>
+
+  <%= f.submit '更新' %>
+
+<% end %>

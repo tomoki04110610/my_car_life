@@ -10,6 +10,19 @@ class CarModelsController < ApplicationController
   end
 
   def edit
+    @car_model = CarModel.find(params[:id])
+  end
+
+  def update
+    car_model = CarModel.find(params[:id])
+    car_model.update(car_model_params)
+    redirect_to mypage_path
+  end
+
+  def destroy
+    car_model = CarModel.find(params[:id])
+    car_model.destroy
+    redirect_to mypage_path
   end
 
   private
