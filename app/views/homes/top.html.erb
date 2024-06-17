@@ -1,3 +1,13 @@
 <h1>My car life</h1>
-<h2>投稿機能を作成したら４件表示できるようにする</h2>
 
+<h2>最新の投稿</h2>
+
+<% @posts.each do |post| %>
+  <h4>タイトル</h4>
+  <p><%= post.title %></p>
+  <h4>本文</h4>
+  <p><%= post.body %></p>
+  <h4>ニックネーム</h4>
+  <p><%= post.user.nickname %></p>
+  <%= link_to "詳細を見る", post_path(post) %>
+<% end %>
