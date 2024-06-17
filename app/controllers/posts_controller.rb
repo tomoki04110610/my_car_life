@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.new(post_params)
-    if post.save
+    @post = current_user.posts.new(post_params)
+    if @post.save
       redirect_to post_path(post.id)
     else
-      redirect_to new_post_path
+      render :new
     end
   end
 
