@@ -29,7 +29,16 @@
           <%= link_to "新規投稿", new_post_path %>
         </li>
         <li>
+          <%= link_to "車種登録", new_car_model_path %>
+        </li>
+        <li>
           <%= link_to "ユーザー一覧", users_path %>
+        </li>
+        <li>
+          <%= link_to "マイページ", mypage_path %>
+        </li>
+        <li>
+          <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
         </li>
       <% else %>
         <li>
