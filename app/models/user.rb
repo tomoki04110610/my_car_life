@@ -9,4 +9,10 @@ class User < ApplicationRecord
   has_many :driving_distances, dependent: :destroy
 
   has_one_attached :profile_image
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :nickname, presence: true
 end
