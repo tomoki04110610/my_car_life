@@ -4,11 +4,11 @@ class CarModelsController < ApplicationController
   end
 
   def create
-    car_model = current_user.car_models.new(car_model_params)
-    if car_model.save
+    @car_model = current_user.car_models.new(car_model_params)
+    if @car_model.save
       redirect_to mypage_path
     else
-      redirect_to new_car_model_path
+      render :new
     end
   end
 
@@ -17,9 +17,12 @@ class CarModelsController < ApplicationController
   end
 
   def update
-    car_model = CarModel.find(params[:id])
-    car_model.update(car_model_params)
-    redirect_to mypage_path
+    @car_model = CarModel.find(params[:id])
+    if @car_model.update(car_model_params)
+       redirect_to mypage_path
+    else
+      render :edit
+    end
   end
 
   def destroy
