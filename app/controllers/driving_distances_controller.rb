@@ -16,7 +16,7 @@ class DrivingDistancesController < ApplicationController
 
   private
   def driving_distance_params
-    params.require(:driving_distance).permit(:distance, :car_model_id, :user_id)
+    params.require(:driving_distance).permit(:distance, :car_model_id)
   end
 
 end
