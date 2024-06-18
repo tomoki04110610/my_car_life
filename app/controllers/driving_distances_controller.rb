@@ -1,16 +1,15 @@
 class DrivingDistancesController < ApplicationController
   def new
     @driving_distance = current_user.driving_distances.new
-    @car_models = CarModel.all
+    @user_car_models = current_user.car_models
   end
 
   def create
-    @car_models = CarModel.all
+    @user_car_models = CarModel.where(user_id: current_user.id)
     @driving_distance = current_user.driving_distances.new(driving_distance_params)
     if @driving_distance.save
       redirect_to mypage_path
     else
-      @driving_distance = current_user.driving_distances.new
       render :new
     end
   end
