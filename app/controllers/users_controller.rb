@@ -17,6 +17,13 @@ class UsersController < ApplicationController
     redirect_to user_path(user.id)
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.update(is_active: false)
+    redirect_to new_user_session_path
+  end
+
+
   def mypage
     @user = current_user
   end
