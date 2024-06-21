@@ -17,4 +17,7 @@
       <p>走行距離が登録されていません。</p>
     <% end %>
 <% end %>
-<%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+<% unless @user.guest_user? %>
+  <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
+  <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+<% end %>
