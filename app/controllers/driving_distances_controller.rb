@@ -8,8 +8,10 @@ class DrivingDistancesController < ApplicationController
     @user_car_models = CarModel.where(user_id: current_user.id)
     @driving_distance = current_user.driving_distances.new(driving_distance_params)
     if @driving_distance.save
+      flash[:notice] = "走行距離登録に成功しました。"
       redirect_to mypage_path
     else
+      flash.now[:notice] = "走行距離登録に失敗しました。"
       render :new
     end
   end

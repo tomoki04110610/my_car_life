@@ -13,13 +13,20 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user.id)
+    if user.update(user_params)
+      flash[:notice] = "ユーザー登録情報の更新に成功しました。"
+      redirect_to user_path(user.id)
+    else
+      flash.now[:notice] = "ユーザー登録情報の更新に失敗しました。"
+      @user = User.find(params[:id])
+      render :edit
+    end
   end
 
   def destroy
     user = User.find(params[:id])
     user.update(is_active: false)
+    flash[:notice] = "退会処理に成功しました。"
     redirect_to new_user_session_path
   end
 
