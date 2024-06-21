@@ -6,8 +6,10 @@ class CarModelsController < ApplicationController
   def create
     @car_model = current_user.car_models.new(car_model_params)
     if @car_model.save
+      flash[:notice] = "車種登録に成功しました。"
       redirect_to mypage_path
     else
+      flash.now[:notice] = "車種登録に失敗しました。"
       render :new
     end
   end
@@ -19,8 +21,10 @@ class CarModelsController < ApplicationController
   def update
     @car_model = CarModel.find(params[:id])
     if @car_model.update(car_model_params)
+      flash[:notice] = "車種の更新に成功しました。"
        redirect_to mypage_path
     else
+      flash.now[:notice] = "車種の更新に失敗しました。"
       render :edit
     end
   end
@@ -28,6 +32,7 @@ class CarModelsController < ApplicationController
   def destroy
     car_model = CarModel.find(params[:id])
     car_model.destroy
+    flash[:notice] = "登録車種の削除に成功しました。"
     redirect_to mypage_path
   end
 
