@@ -40,10 +40,10 @@
         <li>
           <%= link_to "マイページ", mypage_path %>
         </li>
-        <li>
-          <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
-        </li>
       <% else %>
+        <li>
+          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
+        </li>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>
         </li>
