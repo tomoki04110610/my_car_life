@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.where.not(email: User::GUEST_USER_EMAIL)
   end
 
   def edit
