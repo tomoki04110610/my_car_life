@@ -1,5 +1,4 @@
 <h2>タイトル</h2>
-
 <p><%= @post.title %></p>
 
 <h2>本文</h2>
@@ -8,5 +7,11 @@
 <h2>ジャンル</h2>
 <p><%= @post.genre.genre_name %></p>
 
-<%= link_to "編集", edit_post_path(@post.id) %>
-<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<h4>投稿者</h4>
+<p><%= @post.user.nickname %></p>
+
+<% if @post.user == current_user %>
+  <%= link_to "編集", edit_post_path(@post.id) %>
+  <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<% end %>
+<%= link_to "戻る", posts_path %>
