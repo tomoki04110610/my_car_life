@@ -14,6 +14,9 @@
   <h4>ジャンル</h4>
   <p><%= post.genre.genre_name %></p>
 
+  <h4>画像</h4>
+<%= image_tag post.get_post_image(100, 100) %>
+
   <h4>投稿者</h4>
   <p><%= link_to post.user.nickname, user_path(post.user) %></p>
 <% end %>

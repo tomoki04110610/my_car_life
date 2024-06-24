@@ -20,6 +20,9 @@
   <h4>ジャンル</h4>
   <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
 
+  <h4>画像</h4>
+  <%= f.file_field :post_image, accept: "image/*" %>
+
   <%= f.submit '更新' %>
 
 <% end %>

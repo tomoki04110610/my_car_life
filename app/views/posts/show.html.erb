@@ -7,6 +7,9 @@
 <h2>ジャンル</h2>
 <p><%= @post.genre.genre_name %></p>
 
+<h4>画像</h4>
+<%= image_tag @post.get_post_image(200, 200) %>
+
 <h4>投稿者</h4>
 <p><%= @post.user.nickname %></p>
 
