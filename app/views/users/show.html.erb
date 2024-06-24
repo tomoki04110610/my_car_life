@@ -1,5 +1,8 @@
 <h1>ユーザー詳細画面</h1>
 
+<h4>プロフィール画像</h4>
+<%= image_tag @user.get_profile_image(200, 200) %>
+
 <h2>ニックネーム</h2>
 <p><%= @user.nickname %></p>
 

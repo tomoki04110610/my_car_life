@@ -1,5 +1,8 @@
 <h1>ユーザー一覧</h1>
 <% @users.each do |user| %>
+  <h4>プロフィール画像</h4>
+  <%= image_tag user.get_profile_image(100, 100) %>
+
   <p>ニックネーム</p>
   <span>
     <%= link_to user.nickname, user_path(user.id)%>
