@@ -1,7 +1,11 @@
 <h1>マイページ</h1>
 
+<h4>プロフィール画像</h4>
+<%= image_tag @user.get_profile_image(100, 100) %>
+
 <h4>ニックネーム</h4>
 <%= @user.nickname %>
+
 <h4>登録車種名</h4>
 <% @user.car_models.each do |car_model|%>
 
