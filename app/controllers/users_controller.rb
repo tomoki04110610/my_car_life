@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.update(is_active: false)
+    sign_out
     flash[:notice] = "退会処理に成功しました。"
     redirect_to new_user_session_path
   end
