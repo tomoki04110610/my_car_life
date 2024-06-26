@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/eea0cb5b59.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,16 +15,24 @@
     <header>
       <% if user_signed_in? %>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <i class="fa-solid fa-right-from-bracket">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </i>
         </li>
         <li>
-          <%= link_to "トップページ", root_path %>
+          <i class="fa-solid fa-house">
+            <%= link_to "トップページ", root_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "アバウトページ", about_path %>
+          <i class="fa-solid fa-info">
+            <%= link_to "アバウトページ", about_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "投稿一覧", posts_path %>
+          <i class="fa-solid fa-list">
+            <%= link_to "投稿一覧", posts_path %>
+          </i>
         </li>
         <li>
           <%= link_to "新規投稿", new_post_path %>
@@ -35,26 +44,40 @@
           <%= link_to "走行距離登録", new_driving_distance_path %>
         </li>
         <li>
-          <%= link_to "ユーザー一覧", users_path %>
+          <i class="fa-solid fa-users">
+            <%= link_to "ユーザー一覧", users_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "マイページ", mypage_path %>
+          <i class="fa-solid fa-house-user">
+            <%= link_to "マイページ", mypage_path %>
+          </i>
         </li>
       <% else %>
         <li>
-          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
+          <i class="fa-solid fa-arrow-right-to-bracket">
+            <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
+          </i>
         </li>
         <li>
-          <%= link_to "新規登録", new_user_registration_path %>
+          <i class="fa-solid fa-user-plus">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <i class="fa-solid fa-right-to-bracket">
+            <%= link_to "ログイン", new_user_session_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "トップページ", root_path %>
+          <i class="fa-solid fa-house">
+            <%= link_to "トップページ", root_path %>
+          </i>
         </li>
         <li>
-          <%= link_to "アバウトページ", about_path %>
+          <i class="fa-solid fa-info">
+            <%= link_to "アバウトページ", about_path %>
+          </i>
         </li>
       <% end %>
     </header>
