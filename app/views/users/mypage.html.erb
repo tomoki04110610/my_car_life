@@ -1,27 +1,39 @@
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row">
+    <h1>マイページ</h1>
+  </div>
 
-<h4>プロフィール画像</h4>
-<%= image_tag @user.get_profile_image(100, 100) %>
+  <div class="row">
+    <div class="col-md-3">
+      <h4>プロフィール画像</h4>
+      <%= image_tag @user.get_profile_image(100, 100) %>
 
-<h4>ニックネーム</h4>
-<%= @user.nickname %>
+      <h4>ニックネーム</h4>
+      <%= @user.nickname %>
+    </div>
+    <div class="col-md-9">
+      <h4>登録車種名</h4>
+      <% @user.car_models.each do |car_model|%>
 
-<h4>登録車種名</h4>
-<% @user.car_models.each do |car_model|%>
+        <p><%= car_model.name %></p>
+        <%= link_to "車種名編集", edit_car_model_path(car_model.id) %>
+        <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 
-  <p><%= car_model.name %></p>
-  <%= link_to "車種名編集", edit_car_model_path(car_model.id) %>
-  <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
+          <% if latest_driving_distance %>
+            <h4>最新の走行距離</h4>
+            <p><%= latest_driving_distance.distance %></p>
+          <% else %>
+            <p>走行距離が登録されていません。</p>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
 
-  <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
-    <% if latest_driving_distance %>
-      <h4>最新の走行距離</h4>
-      <p><%= latest_driving_distance.distance %></p>
-    <% else %>
-      <p>走行距離が登録されていません。</p>
+  <div class="row">
+    <% unless @user.guest_user? %>
+      <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
+      <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
     <% end %>
-<% end %>
-<% unless @user.guest_user? %>
-  <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
-  <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
-<% end %>
+  </div>
+</div>
