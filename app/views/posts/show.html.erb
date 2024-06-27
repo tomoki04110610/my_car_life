@@ -14,7 +14,7 @@
 <p><%= link_to @post.user.nickname, user_path(@post.user.id) %></p>
 
 <% if @post.user == current_user %>
-  <%= link_to "編集", edit_post_path(@post.id) %>
-  <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-success" %>
+    <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 <% end %>
-<%= link_to "戻る", posts_path %>
+  <%= link_to "戻る", posts_path, class: "btn btn-dark" %>

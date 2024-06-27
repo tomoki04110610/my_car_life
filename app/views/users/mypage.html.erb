@@ -10,18 +10,16 @@
 
       <h4>ニックネーム</h4>
       <%= @user.nickname %>
+
+      <%= link_to "ユーザー編集", edit_user_path(current_user.id), class: "btn btn-success" %>
+      <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
     </div>
     <div class="col-md-9">
       <h4>登録車種名</h4>
       <% @user.car_models.each do |car_model|%>
-
         <p><%= car_model.name %></p>
-        <button type="button" class="btn btn-outline-success">
-          <%= link_to "車種名編集", edit_car_model_path(car_model.id) %>
-        </button>
-        <button type="button" class="btn btn-outline-danger">
-          <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-        </button>
+          <%= link_to "車種名編集", edit_car_model_path(car_model.id), class: "btn btn-success" %>
+          <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 
         <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
           <% if latest_driving_distance %>
@@ -32,16 +30,5 @@
           <% end %>
       <% end %>
     </div>
-  </div>
-
-  <div class="row">
-    <% unless @user.guest_user? %>
-      <button type="button" class="btn btn-outline-success">
-        <%= link_to "ユーザー編集", edit_user_path(current_user.id) %>
-      </button>
-      <button type="button" class="btn btn-outline-danger">
-        <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？" %>
-      </button>
-    <% end %>
   </div>
 </div>

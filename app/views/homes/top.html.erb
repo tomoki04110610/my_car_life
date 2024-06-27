@@ -7,7 +7,5 @@
   <p><%= post.body %></p>
   <h4>ニックネーム</h4>
   <p><%= post.user.nickname %></p>
-  <button type="button" class="btn btn-outline-info">
-    <%= link_to "詳細を見る", post_path(post) %>
-  </button>
+  <%= link_to "詳細を見る", post_path(post), class: "btn btn-info" %>
 <% end %>

@@ -16,10 +16,12 @@
 
   <h4>ニックネーム</h4>
   <%= f.text_field :nickname%>
-  
+
   <h4>プロフィール画像</h4>
   <%= f.file_field :profile_image, accept: "image/*" %>
 
-  <%= f.submit '更新' %>
+
+    <%= f.submit '更新', class: "btn btn-secondary" %>
+
 
 <% end %>

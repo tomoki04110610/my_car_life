@@ -14,6 +14,6 @@
     <h4><%= car_model.name %>の走行距離</h4>
     <%= f.text_field :distance %>
     <%= f.hidden_field :car_model_id, value: car_model.id %>
-    <%= f.submit '登録' %>
+    <%= f.submit '登録', class: "btn btn-primary" %>
   <% end %>
 <% end %>
