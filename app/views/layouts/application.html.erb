@@ -14,71 +14,105 @@
   <body>
     <header>
       <% if user_signed_in? %>
-        <li>
-          <i class="fa-solid fa-right-from-bracket">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-house">
-            <%= link_to "トップページ", root_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-info">
-            <%= link_to "アバウトページ", about_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-list">
-            <%= link_to "投稿一覧", posts_path %>
-          </i>
-        </li>
-        <li>
-          <%= link_to "新規投稿", new_post_path %>
-        </li>
-        <li>
-          <%= link_to "車種登録", new_car_model_path %>
-        </li>
-        <li>
-          <%= link_to "走行距離登録", new_driving_distance_path %>
-        </li>
-        <li>
-          <i class="fa-solid fa-users">
-            <%= link_to "ユーザー一覧", users_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-house-user">
-            <%= link_to "マイページ", mypage_path %>
-          </i>
-        </li>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+          <div class="container d-flex">
+
+            <span class="navbar-brand">
+              <%= link_to "My Car Life", root_path,class: "nav-link text-light" %>
+            </span>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto d-flex">
+                <li class="nav-item text-light">
+                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to root_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-house"></i>トップページ
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to about_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-info"></i>アバウトページ
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to posts_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-list"></i>投稿一覧
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to "新規投稿", new_post_path %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to "車種登録", new_car_model_path %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to "走行距離登録", new_driving_distance_path %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to users_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-users"></i>ユーザー一覧
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to mypage_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-house-user"></i>マイページ
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       <% else %>
-        <li>
-          <i class="fa-solid fa-arrow-right-to-bracket">
-            <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-user-plus">
-            <%= link_to "新規登録", new_user_registration_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-right-to-bracket">
-            <%= link_to "ログイン", new_user_session_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-house">
-            <%= link_to "トップページ", root_path %>
-          </i>
-        </li>
-        <li>
-          <i class="fa-solid fa-info">
-            <%= link_to "アバウトページ", about_path %>
-          </i>
-        </li>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+          <div class="container d-flex">
+
+            <span class="navbar-brand">
+              <%= link_to "My Car Life", root_path,class: "nav-link text-light" %>
+            </span>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto d-flex">
+                <li class="nav-item text-light">
+                  <%= link_to users_guest_sign_in_path, method: :post, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>ゲストログイン（閲覧用）
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to new_user_registration_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-user-plus"></i>新規登録
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to new_user_session_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-to-bracket"></i>ログイン
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to root_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-house"></i>トップページ
+                  <% end %>
+                </li>
+                <li class="nav-item text-light">
+                  <%= link_to about_path, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-info"></i>アバウトページ
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       <% end %>
     </header>
     <main>

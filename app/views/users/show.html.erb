@@ -3,15 +3,15 @@
 <h4>プロフィール画像</h4>
 <%= image_tag @user.get_profile_image(200, 200) %>
 
-<h2>ニックネーム</h2>
+<h4>ニックネーム</h4>
 <p><%= @user.nickname %></p>
 
-<h2>車種</h2>
+<h4>車種</h4>
 <% @user.car_models.each do |car_model| %>
     <p><%= car_model.name %></p>
 <% end %>
 
-<h2>投稿一覧</h2>
+<h4>投稿一覧</h4>
 <% @user.posts.each do |post| %>
   <h4>タイトル</h4>
   <span>
