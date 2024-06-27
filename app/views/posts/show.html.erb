@@ -11,7 +11,7 @@
 <%= image_tag @post.get_post_image(200, 200) %>
 
 <h4>投稿者</h4>
-<p><%= @post.user.nickname %></p>
+<p><%= link_to @post.user.nickname, user_path(@post.user.id) %></p>
 
 <% if @post.user == current_user %>
   <%= link_to "編集", edit_post_path(@post.id) %>
