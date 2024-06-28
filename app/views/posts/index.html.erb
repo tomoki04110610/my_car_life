@@ -1,22 +1,31 @@
-<h1>投稿一覧</h1>
-
-<% @posts.each do |post| %>
-  <h4>タイトル</h4>
-  <span>
-    <%= link_to post.title, post_path(post) %>
-  </span>
-
-  <h4>本文</h4>
-  <% max_length = 50 %>
-  <% truncated_body = post.body.truncate(max_length, omission: '...') %>
-  <p><%= truncated_body %></p>
-
-  <h4>ジャンル</h4>
-  <p><%= post.genre.genre_name %></p>
-
-  <h4>画像</h4>
-<%= image_tag post.get_post_image(100, 100) %>
-
-  <h4>投稿者</h4>
-  <p><%= link_to post.user.nickname, user_path(post.user) %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h1>投稿一覧</h1>
+  </div>
+  <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-3 d-flex">
+          <div class="card align-items-stretch" style="width: 18rem;">
+            <% if post.post_image.present? %>
+              <%= image_tag post.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% else %>
+              <%= image_tag "placeholder.png", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="card-text">
+                <% max_length = 50 %>
+                <% truncated_body = post.body.truncate(max_length, omission: '...') %>
+                <p><%= truncated_body %></p>
+              </p>
+              <h5>ジャンル</h5>
+              <p><%= post.genre.genre_name %></p>
+              <h5>ニックネーム</h5>
+              <p><%= post.user.nickname %></p>
+              <%= link_to "詳細を見る", post_path(post), class: "btn btn-info" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  </div>
+</div>
