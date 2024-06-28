@@ -24,7 +24,7 @@
         <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
           <% if latest_driving_distance %>
             <h4>最新の走行距離</h4>
-            <p><%= latest_driving_distance.distance %></p>
+            <p><%= latest_driving_distance.distance %>km</p>
           <% else %>
             <p>走行距離が登録されていません。</p>
           <% end %>
