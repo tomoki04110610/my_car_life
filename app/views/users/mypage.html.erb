@@ -14,21 +14,22 @@
       <%= link_to "ユーザー編集", edit_user_path(current_user.id), class: "btn btn-success" %>
       <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
     </div>
-    <div class="col-md-9">
-      <h4>登録車種名</h4>
-      <% @user.car_models.each do |car_model|%>
-        <p><%= car_model.name %></p>
-          <%= link_to "車種名編集", edit_car_model_path(car_model.id), class: "btn btn-success" %>
-          <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
 
-        <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
-          <% if latest_driving_distance %>
-            <h4>最新の走行距離</h4>
-            <p><%= latest_driving_distance.distance %>km</p>
-          <% else %>
-            <p>走行距離が登録されていません。</p>
-          <% end %>
-      <% end %>
-    </div>
+    <% @user.car_models.each do |car_model|%>
+     <div class="col-md-3">
+       <h4>登録車種名</h4>
+     <p><%= car_model.name %></p>
+       <%= link_to "車種名編集", edit_car_model_path(car_model.id), class: "btn btn-success" %>
+       <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+
+     <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
+       <% if latest_driving_distance %>
+         <h4>最新の走行距離</h4>
+         <p><%= latest_driving_distance.distance %>km</p>
+       <% else %>
+         <p>走行距離が登録されていません。</p>
+       <% end %>
+       </div>
+    <% end %>
   </div>
 </div>
