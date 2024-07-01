@@ -10,9 +10,10 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
  */
-.main {
-  background-image: url(../images/paint_00229.jpg);
+main {
+  background-image: url(paint_00229.jpg);
+  background-size: cover;
+  min-height: calc(100vh - 80px);
 }
