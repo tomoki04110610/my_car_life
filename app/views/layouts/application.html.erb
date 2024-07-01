@@ -51,7 +51,9 @@
                   <%= link_to "新規投稿", new_post_path %>
                 </li>
                 <li class="nav-item text-light">
-                  <%= link_to "車種登録", new_car_model_path %>
+                  <%= link_to new_car_model_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-car"></i>車種登録
+                  <% end %>
                 </li>
                 <li class="nav-item text-light">
                   <%= link_to "走行距離登録", new_driving_distance_path %>
