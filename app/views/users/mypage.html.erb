@@ -9,7 +9,7 @@
       <%= image_tag @user.get_profile_image(100, 100) %>
 
       <h4>ニックネーム</h4>
-      <%= @user.nickname %>
+      <p><%= @user.nickname %></p>
 
       <%= link_to "ユーザー編集", edit_user_path(current_user.id), class: "btn btn-success" %>
       <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
@@ -29,6 +29,7 @@
        <% else %>
          <p>走行距離が登録されていません。</p>
        <% end %>
+       <%= render "driving_distances/new", car_model: car_model %>
        </div>
     <% end %>
   </div>

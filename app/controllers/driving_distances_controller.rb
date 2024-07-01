@@ -12,7 +12,8 @@ class DrivingDistancesController < ApplicationController
       redirect_to mypage_path
     else
       flash.now[:notice] = "走行距離登録に失敗しました。"
-      render :new
+      @user = current_user
+      render "users/mypage"
     end
   end
 
