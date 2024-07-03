@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mx-auto mt-4">
-    <div class="col">
+  <div class="row text-center">
+    <div class="col-4 mx-auto mt-4">
       <h2>ログイン</h2>
 
       <%= form_with model: @user, url: user_session_path do |f| %>
@@ -22,7 +22,7 @@
         <% end %>
 
         <div class="actions">
-          <%= f.submit "Log in", class: "btn btn-primary" %>
+          <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
 

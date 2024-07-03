@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="row mx-auto mt-4">
-    <div class="col">
+  <div class="row text-center">
+    <div class="col-4 mx-auto mt-4">
       <h2>新規会員登録</h2>
 
       <%= form_with model: @user, url: user_registration_path do |f| %>
@@ -49,8 +49,8 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "Sign up", class: "btn btn-primary" %>
+        <div class="actions my-2">
+          <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
 
