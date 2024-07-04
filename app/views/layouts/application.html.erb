@@ -29,8 +29,8 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto d-flex">
                 <li class="nav-item text-light">
-                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+                  <%= link_to mypage_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-house-user"></i>マイページ
                   <% end %>
                 </li>
                 <li class="nav-item text-light">
@@ -62,8 +62,8 @@
                   <% end %>
                 </li>
                 <li class="nav-item text-light">
-                  <%= link_to mypage_path,class: "nav-link text-light" do %>
-                    <i class="fa-solid fa-house-user"></i>マイページ
+                  <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
                   <% end %>
                 </li>
               </ul>
