@@ -9,7 +9,7 @@
             <% if post.post_image.present? %>
               <%= image_tag post.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
             <% else %>
-              <%= image_tag "placeholder.png", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+              <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= post.title %></h5>
