@@ -1,19 +1,28 @@
-<h1>車種名編集画面</h1>
-
-<% if @car_model.errors.any? %>
-  <%= @car_model.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @car_model.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col-12 text-center">
+      <h1>車種名編集画面</h1>
+    </div>
+    
+    <% if @car_model.errors.any? %>
+      <%= @car_model.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @car_model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: @car_model do |f| %>
-
-  <h4>車種名</h4>
-  <%= f.text_field :name%>
-
-  <%= f.submit '更新', class: "btn btn-warning" %>
-
-<% end %>
+    
+    <%= form_with model: @car_model do |f| %>
+      <div class="col">
+        <h4>車種名</h4>
+      </div>
+      <div class="col">
+        <%= f.text_field :name%>
+      </div>
+      <div class="col pt-2">
+        <%= f.submit '更新', class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>
