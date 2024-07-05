@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 text-center">
+    <div class="col-12 text-center pt-2">
       <h1>新規車種登録</h1>
     </div>
-    
+
     <% if @car_model.errors.any? %>
       <%= @car_model.errors.count %>件のエラーが発生しました
       <ul>
@@ -12,15 +12,15 @@
         <% end %>
       </ul>
     <% end %>
-    
+
     <%= form_with model: @car_model do |f| %>
-      <div class="col">
+      <div class="col-12 text-center">
         <h4>車種名</h4>
       </div>
-      <div class="col">
+      <div class="col-12 text-center">
         <%= f.text_field :name %>
       </div>
-      <div class="col pt-2">
+      <div class="col-12 text-center pt-2">
         <%= f.submit '登録', class: "btn btn-primary" %>
       </div>
     <% end %>
