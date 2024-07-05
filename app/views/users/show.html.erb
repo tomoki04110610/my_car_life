@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-center">
     <h1>ユーザー詳細画面</h1>
   </div>
 
-  <div class="row">
-    <div class="col">
+  <div class="row mx-auto justify-content-center">
+    <div class="col-4 col-lg-4 text-center">
       <h5>プロフィール画像</h5>
       <%= image_tag @user.get_profile_image(200, 200) %>
 
@@ -12,7 +12,7 @@
       <p><%= @user.nickname %></p>
     </div>
 
-    <div class="col">
+    <div class="col-4 col-lg-4 text-center">
       <h5>車種</h5>
       <% @user.car_models.each do |car_model| %>
           <p><%= car_model.name %></p>
@@ -20,13 +20,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <h5>投稿一覧</h5>
   </div>
 
-  <div class="row">
+  <div class="row mx-auto justify-content-center">
     <% @user.posts.each do |post| %>
-      <div class="col-3 d-flex">
+      <div class="col-3 col-lg-3  d-flex text-center">
          <div class="card" style="width: 18rem;">
           <% if post.post_image.present? %>
             <%= image_tag post.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
@@ -51,6 +51,8 @@
     <% end %>
   </div>
 
+  <div class="row justify-content-center py-2">
     <%= link_to "戻る", users_path, class: "btn btn-dark" %>
+  </div>
 
 </div>
