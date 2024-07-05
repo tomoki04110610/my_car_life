@@ -1,24 +1,32 @@
-<h1>走行距離登録</h1>
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col-12">
+      <h4>走行距離登録</h4>
+    </div>
 
 
-<% if @driving_distance.car_model_id == car_model.id && @driving_distance.errors.any? %>
-  <%= @driving_distance.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @driving_distance.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <% if @driving_distance.car_model_id == car_model.id && @driving_distance.errors.any? %>
+      <%= @driving_distance.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @driving_distance.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
-<% unless @driving_distance.car_model_id == car_model.id
-    driving_distance = DrivingDistance.new
-  else
-    driving_distance = @driving_distance
-  end %>
+    <div class="col text-center">
+      <% unless @driving_distance.car_model_id == car_model.id
+          driving_distance = DrivingDistance.new
+        else
+          driving_distance = @driving_distance
+        end %>
 
-  <%= form_with model: driving_distance do |f| %>
-    <h4><%= car_model.name %>の走行距離</h4>
-    <%= f.text_field :distance %>
-    <%= f.hidden_field :car_model_id, value: car_model.id %>
-    <%= f.submit '登録', class: "btn btn-primary" %>
-  <% end %>
+        <%= form_with model: driving_distance do |f| %>
+          <h4><%= car_model.name %>の走行距離</h4>
+          <%= f.text_field :distance %>
+          <%= f.hidden_field :car_model_id, value: car_model.id %>
+          <%= f.submit '登録', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
