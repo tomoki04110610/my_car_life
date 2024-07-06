@@ -38,6 +38,7 @@ class UsersController < ApplicationController
   def mypage
     @user = current_user
     @driving_distance = DrivingDistance.new
+    @post = Post.new
   end
 
   private
