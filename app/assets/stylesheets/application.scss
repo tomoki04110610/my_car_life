@@ -12,10 +12,14 @@
  *
 
  */
+ body {
+   color: white;
+ }
+ 
 main {
   background-image: url(paint_00229.jpg);
   background-size: cover;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh);
 }
 
 .card-body {

@@ -10,7 +10,8 @@ class PostsController < ApplicationController
       redirect_to post_path(@post.id)
     else
       flash.now[:notice] = "投稿に失敗しました。"
-      render :new
+      @user = current_user
+      render :"users/mypage"
     end
   end
 

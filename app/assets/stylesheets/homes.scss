@@ -1,9 +1,13 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  position: relative;
+}
+
 main {
   background-image: url(1242792.jpg);
   background-size: cover;
-  min-height: calc(100vh - 80px);
-  background-position: bottom;
+  min-height: calc(100vh);
+  background-position: center bottom;
 }
