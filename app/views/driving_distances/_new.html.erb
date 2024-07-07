@@ -12,7 +12,7 @@
         <% end %>
       </ul>
     <% end %>
-    <div class="col  py-2 text-center justify-content-center">
+    <div class="col-12 py-2">
       <% unless @driving_distance.car_model_id == car_model.id
           driving_distance = DrivingDistance.new
         else

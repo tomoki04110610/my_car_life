@@ -11,6 +11,8 @@ class PostsController < ApplicationController
     else
       flash.now[:notice] = "投稿に失敗しました。"
       @user = current_user
+      @driving_distance = DrivingDistance.new
+      @post = Post.new
       render :"users/mypage"
     end
   end
