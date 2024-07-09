@@ -22,7 +22,6 @@
           </p>
           <h5>ジャンル</h5>
           <p><%= @post.genre.genre_name %></p>
-          <p><%= image_tag @post.get_post_image(100, 100) %></p>
           <h5>ニックネーム</h5>
           <p><%= @post.user.nickname %></p>
           <%= link_to "投稿者詳細を見る", user_path(@post.user.id), class: "btn btn-info" %>
