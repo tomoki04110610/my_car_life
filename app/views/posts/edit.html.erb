@@ -3,14 +3,16 @@
     <h1>投稿編集画面</h1>
   </div>
 
-  <% if @post.errors.any? %>
-  <%= @post.errors.count %>件のエラーが発生しました
-    <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
+  <div class="row">
+    <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 
   <%= form_with model: @post do |f| %>
   <div class="row text-center d-flex">
