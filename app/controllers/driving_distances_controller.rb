@@ -11,7 +11,7 @@ class DrivingDistancesController < ApplicationController
       flash[:notice] = "走行距離登録に成功しました。"
       redirect_to mypage_path
     else
-      flash.now[:notice] = "走行距離登録に失敗しました。"
+      flash.now[:alert] = "走行距離登録に失敗しました。"
       @user = current_user
       @driving_distance = DrivingDistance.new
       @post = Post.new

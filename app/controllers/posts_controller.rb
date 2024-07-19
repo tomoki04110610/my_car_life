@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿に成功しました。"
       redirect_to post_path(@post.id)
     else
-      flash.now[:notice] = "投稿に失敗しました。"
+      flash.now[:alert] = "投稿に失敗しました。"
       @user = current_user
       @driving_distance = DrivingDistance.new
       @post = Post.new
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿の更新に成功しました。"
       redirect_to post_path(@post.id)
     else
-      flash.now[:notice] = "投稿の更新に失敗しました。"
+      flash.now[:alert] = "投稿の更新に失敗しました。"
       @post = Post.find(params[:id])
       render :edit
     end

@@ -4,7 +4,7 @@
   </div>
 
   <% if @post.errors.any? %>
-    <%= @post.errors.count %>件のエラーが発生しました
+  <%= @post.errors.count %>件のエラーが発生しました
     <ul>
       <% @post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
