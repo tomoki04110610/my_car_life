@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
@@ -51,6 +53,13 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :body, :genre_id, :post_image)
+  end
+
+  def is_matching_login_user
+    @post = Post.find(params[:id])
+    unless current_user.id == @post.user_id
+      redirect_to posts_path, alert: "他のユーザーの投稿は編集できません"
+    end
   end
 
 end
