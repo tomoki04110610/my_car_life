@@ -33,3 +33,21 @@ h2 {
 .field {
   text-align: center;
 }
+
+.flash-message {
+  border-radius: 5px;
+  padding: 16px 24px;
+
+}
+
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
+}

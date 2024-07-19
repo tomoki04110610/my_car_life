@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:notice] = "ユーザー登録情報の更新に成功しました。"
       redirect_to mypage_path(user.id)
     else
-      flash.now[:notice] = "ユーザー登録情報の更新に失敗しました。"
+      flash.now[:alert] = "ユーザー登録情報の更新に失敗しました。"
       @user = User.find(params[:id])
       render :edit
     end

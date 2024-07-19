@@ -9,7 +9,7 @@ class CarModelsController < ApplicationController
       flash[:notice] = "車種登録に成功しました。"
       redirect_to mypage_path
     else
-      flash.now[:notice] = "車種登録に失敗しました。"
+      flash.now[:alert] = "車種登録に失敗しました。"
       render :new
     end
   end
@@ -24,7 +24,7 @@ class CarModelsController < ApplicationController
       flash[:notice] = "車種の更新に成功しました。"
        redirect_to mypage_path
     else
-      flash.now[:notice] = "車種の更新に失敗しました。"
+      flash.now[:alert] = "車種の更新に失敗しました。"
       render :edit
     end
   end
