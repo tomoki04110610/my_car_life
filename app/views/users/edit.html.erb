@@ -1,40 +1,52 @@
 <div class="container">
   <div class="row justify-content-center">
-    <h1>ユーザー編集画面</h1>
+    <div class="col-12 text-center">
+      <h1>ユーザー編集画面</h1>
+    </div>
+    <div class="col-12 text-center">
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <%= form_with model: @user do |f| %>
+      <div class="col">
+        <h4>姓</h4>
+        <%= f.text_field :last_name%>
+      </div>
+
+      <div class="col">
+        <h4>名</h4>
+        <%= f.text_field :first_name%>
+      </div>
+
+      <div class="col">
+        <h4>姓カナ</h4>
+        <%= f.text_field :last_name_kana%>
+      </div>
+
+      <div class="col">
+        <h4>名カナ</h4>
+        <%= f.text_field :first_name_kana%>
+      </div>
+
+      <div class="col">
+        <h4>ニックネーム</h4>
+        <%= f.text_field :nickname%>
+      </div>
+
+      <div class="col">
+        <h4>プロフィール画像</h4>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div class="col-12 py-2">
+        <%= f.submit '更新', class: "btn btn-secondary" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="row justify-content-center">
-  <%= form_with model: @user do |f| %>
-    <div class="col">
-      <h4>姓</h4>
-      <%= f.text_field :last_name%>
-    </div>
-
-    <div class="col">
-      <h4>名</h4>
-      <%= f.text_field :first_name%>
-    </div>
-
-    <div class="col">
-      <h4>姓カナ</h4>
-      <%= f.text_field :last_name_kana%>
-    </div>
-
-    <div class="col">
-      <h4>名カナ</h4>
-      <%= f.text_field :first_name_kana%>
-    </div>
-
-    <div class="col">
-      <h4>ニックネーム</h4>
-      <%= f.text_field :nickname%>
-    </div>
-
-    <div class="col">
-      <h4>プロフィール画像</h4>
-      <%= f.file_field :profile_image, accept: "image/*" %>
-    </div>
-    <div class="col-12 py-2">
-      <%= f.submit '更新', class: "btn btn-secondary" %>
-    </div>
-  <% end %>
+</div>
