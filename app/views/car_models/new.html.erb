@@ -4,14 +4,16 @@
       <h1>新規車種登録</h1>
     </div>
 
-    <% if @car_model.errors.any? %>
-      <%= @car_model.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @car_model.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <div class="col-12 text-center">
+      <% if @car_model.errors.any? %>
+        <%= @car_model.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @car_model.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
     <%= form_with model: @car_model do |f| %>
       <div class="col-12 text-center">
