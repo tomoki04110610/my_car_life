@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     user.update(is_active: false)
     sign_out
     flash[:notice] = "退会処理に成功しました。"
-    redirect_to new_user_session_path
+    redirect_to new_user_registration_path
   end
 
 
