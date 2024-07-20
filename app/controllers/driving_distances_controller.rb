@@ -13,7 +13,7 @@ class DrivingDistancesController < ApplicationController
     else
       flash.now[:alert] = "走行距離登録に失敗しました。"
       @user = current_user
-      @driving_distance = DrivingDistance.new
+      # @driving_distance = DrivingDistance.new
       @post = Post.new
       render "users/mypage"
     end

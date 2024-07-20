@@ -4,14 +4,16 @@
       <h4>走行距離登録</h4>
     </div>
 
-    <% if @driving_distance.car_model_id == car_model.id && @driving_distance.errors.any? %>
-      <%= @driving_distance.errors.count %>件のエラーが発生しました
-      <ul>
-        <% @driving_distance.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <div class="col-12">
+      <% if @driving_distance.car_model_id == car_model.id && @driving_distance.errors.any? %>
+        <%= @driving_distance.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @driving_distance.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
     <div class="col-12 py-2">
       <% unless @driving_distance.car_model_id == car_model.id
           driving_distance = DrivingDistance.new
