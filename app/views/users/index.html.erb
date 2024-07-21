@@ -2,6 +2,9 @@
   <div class="row justify-content-center">
     <h1>ユーザー一覧</h1>
   </div>
+  <div class="row d-flex justify-content-center mb-2">
+    <%= render "searches/form" %>
+  </div>
   <div class="row">
      <% @users.each do |user| %>
       <div class="col-lg-3 col-md-6 col-sm-12 d-flex my-2">
