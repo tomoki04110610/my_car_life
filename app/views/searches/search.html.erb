@@ -1,7 +1,11 @@
 <% if @model == 'user' %>
-    <h3>Users search for "<%= @content %>"</h3>
-  <%= render 'users/index', users: @records %>
+  <h3>Users search_for "<%= @content %>"</h3>
+  <% @records.each do |record| %>
+    <div><%= record.nickname %></div>
+    <div>
+      <img src="<%= record.profile_image %>">
+    </div>
+  <% end %>
 <% elsif @model == 'post' %>
-    <h3>Posts search for "<%= @content %>"</h3>
-  <%= render 'posts/index', posts: @records %>
+  <h3>Posts search_for "<%= @content %>"</h3>
 <% end %>
