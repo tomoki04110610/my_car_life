@@ -5,7 +5,17 @@
     <div>
       <img src="<%= record.profile_image %>">
     </div>
+    <span>
+      <%= link_to "ユーザー詳細へ", user_path(record.id), class: "btn btn-info" %>
+    </span>
   <% end %>
 <% elsif @model == 'post' %>
   <h3>Posts search_for "<%= @content %>"</h3>
+  <% @records.each do |record| %>
+    <div><%= record.title %></div>
+    <div><%= record.body %></div>
+    <span>
+      <%= link_to "投稿詳細へ", post_path(record.id), class: "btn btn-info" %>
+    </span>
+  <% end %>
 <% end %>
