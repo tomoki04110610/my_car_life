@@ -1,10 +1,14 @@
 <% if @model == 'user' %>
   <h3>Users search_for "<%= @content %>"</h3>
   <% @records.each do |record| %>
-    <div><%= record.nickname %></div>
     <div>
-      <img src="<%= record.profile_image %>">
+      <% if record.profile_image.present? %>
+        <%= image_tag record.profile_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+      <% else %>
+        <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+      <% end %>
     </div>
+    <div><%= record.nickname %></div>
     <span>
       <%= link_to "ユーザー詳細へ", user_path(record.id), class: "btn btn-info" %>
     </span>
@@ -12,6 +16,11 @@
 <% elsif @model == 'post' %>
   <h3>Posts search_for "<%= @content %>"</h3>
   <% @records.each do |record| %>
+    <% if record.post_image.present? %>
+      <%= image_tag record.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+    <% else %>
+      <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+    <% end %>
     <div><%= record.title %></div>
     <div><%= record.body %></div>
     <span>
