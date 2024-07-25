@@ -48,6 +48,9 @@
         <p><%= post_comment.user.nickname %></p>
         <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
         <p><%= post_comment.comment %></p>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger mb-2" %>
+        <% end %>
       <% end %>
     </div>
     <div class="col-lg-6">
