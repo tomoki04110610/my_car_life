@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @post_commet = PostComment.new
+    @post_comment = PostComment.new
   end
 
   def index

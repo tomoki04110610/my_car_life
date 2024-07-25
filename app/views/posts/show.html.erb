@@ -39,4 +39,23 @@
         <%= link_to "戻る", posts_path, class: "btn btn-dark" %>
       </div>
   </div>
+
+  <div class="row py-2 d-flex justify-content-center">
+    <div class="col-lg-6">
+      <p>コメント件数：<%= @post.post_comments.count %></p>
+      <% @post.post_comments.each do |post_comment| %>
+        <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+        <p><%= post_comment.user.nickname %></p>
+        <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+        <p><%= post_comment.comment %></p>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <%= hidden_field_tag :post_id, @post.id %>
+      <%= form_with model: [@post, @post_comment], url: post_comments_path(post_id: @post.id) do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <p><%= f.submit "送信する" %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
