@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index, :edit, :update, :destroy]
   get '/mypage', to: 'users#mypage', as: 'mypage'
   resources :posts
+    resources :post_comments, only: [:create, :destroy]
   resources :car_models, only: [:new, :create, :edit, :update, :destroy]
   resources :driving_distances, only: [:new, :create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
