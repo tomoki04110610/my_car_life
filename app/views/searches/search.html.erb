@@ -1,30 +1,64 @@
-<% if @model == 'user' %>
-  <h3>Users search_for "<%= @content %>"</h3>
-  <% @records.each do |record| %>
-    <div>
-      <% if record.profile_image.present? %>
-        <%= image_tag record.profile_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
-      <% else %>
-        <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+<div class="container">
+  <% if @model == 'user' %>
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-sm-6 text-center">
+        <h3>Users search_for "<%= @content %>"</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <% @records.each do |record| %>
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex my-2">
+          <div class="card align-items-stretch" style="width: 18rem;">
+            <% if record.profile_image.present? %>
+              <%= image_tag record.profile_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% end %>
+            <div class="card-body text-secondary">
+              <p><%= record.nickname %></p>
+              <span>
+                <%= link_to "ユーザー詳細へ", user_path(record.id), class: "btn btn-info" %>
+              </span>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
-    <div><%= record.nickname %></div>
-    <span>
-      <%= link_to "ユーザー詳細へ", user_path(record.id), class: "btn btn-info" %>
-    </span>
+  <% elsif @model == 'post' %>
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-sm-6 text-center">
+        <h3>Posts search_for "<%= @content %>"</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <% @records.each do |record| %>
+        <div class="col-lg-3 col-md-6 col-sm-12 d-flex my-2">
+          <div class="card align-items-stretch" style="width: 18rem;">
+            <% if record.post_image.present? %>
+              <%= image_tag record.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% else %>
+              <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
+            <% end %>
+            <div class="card-body text-secondary">
+              <h5 class="card-title"><%= record.title %></h5>
+              <p class="card-text">
+                <% max_length = 50 %>
+                <% truncated_body = record.body.truncate(max_length, omission: '...') %>
+                <p><%= truncated_body %></p>
+              </p>
+              <h5>ジャンル</h5>
+              <p><%= record.genre.genre_name %></p>
+              <h5>ニックネーム</h5>
+              <p><%= record.user.nickname %></p>
+              <span>
+                <%= link_to "投稿詳細へ", post_path(record.id), class: "btn btn-info" %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-<% elsif @model == 'post' %>
-  <h3>Posts search_for "<%= @content %>"</h3>
-  <% @records.each do |record| %>
-    <% if record.post_image.present? %>
-      <%= image_tag record.post_image, class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
-    <% else %>
-      <%= image_tag "no_image.jpg", class: "bd-placeholder-img card-img-top", width: "100%", height: "180", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: Image cap" %>
-    <% end %>
-    <div><%= record.title %></div>
-    <div><%= record.body %></div>
-    <span>
-      <%= link_to "投稿詳細へ", post_path(record.id), class: "btn btn-info" %>
-    </span>
-  <% end %>
-<% end %>
+</div>
