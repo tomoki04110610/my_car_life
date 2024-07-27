@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
   devise_for :users
   resources :users, only: [:show, :index, :edit, :update, :destroy]
   get '/mypage', to: 'users#mypage', as: 'mypage'
