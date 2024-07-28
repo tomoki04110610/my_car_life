@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :admin, skip: [:registrations, :password], controllers: {
-    sessions: 'admin/sessions'
-  }
-  devise_for :users
   resources :users, only: [:show, :index, :edit, :update, :destroy]
   get '/mypage', to: 'users#mypage', as: 'mypage'
   resources :posts
@@ -18,4 +14,15 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
+
+  devise_for :users
+  devise_for :admin, skip: [:registrations, :password], controllers: {
+    sessions: 'admin/sessions'
+  }
+  
+  namespace :admin do
+    get 'dashboards', to:'dashboards#index'
+    resources :users, only: [:destroy]
+  end
+
 end

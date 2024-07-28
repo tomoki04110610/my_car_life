@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - my_car_life</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <% if admin_signed_in? %>
+    <div class="text-right">
+      <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+    </div>
+  <% end %>
+  <%= yield %>
+</body>
+</html>
