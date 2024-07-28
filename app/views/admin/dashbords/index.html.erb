@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>全ユーザー一覧</h1>
+    </div>
+  </div>
+  <div class="row">
+    <ul>
+      <% @users.each do |user| %>
+        <li class="col">
+          <%= user.nickname %> - <%=user.email %>
+          <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'} %>
+        </li>
+    </ul>
+  </div>
+</div>
