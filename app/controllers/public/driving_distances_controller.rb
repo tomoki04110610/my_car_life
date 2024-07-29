@@ -1,4 +1,4 @@
-class DrivingDistancesController < ApplicationController
+class Public::DrivingDistancesController < ApplicationController
   def new
     @driving_distance = current_user.driving_distances.new
     @user_car_models = current_user.car_models
