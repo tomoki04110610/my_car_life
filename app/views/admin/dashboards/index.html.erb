@@ -11,6 +11,7 @@
           <%= user.nickname %> - <%=user.email %>
           <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'} %>
         </li>
+      <% end %>
     </ul>
   </div>
 </div>
