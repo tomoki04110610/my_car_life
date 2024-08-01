@@ -1,15 +1,17 @@
 <div class="container">
-  <div class="row">
+  <div class="row d-flex justfy-content-center text-center mb-2">
     <div class="col-12">
-      <h1>全ユーザー一覧</h1>
+      <h2>全ユーザー一覧</h2>
     </div>
   </div>
-  <div class="row">
-    <ul>
+  <div class="row justfy-content-center text-center">
+    <ul class="row justfy-content-center text-center">
       <% @users.each do |user| %>
-        <li class="col">
+        <li class="col-12" style="list-style: none;">
           <%= user.nickname %> - <%=user.email %>
-          <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'} %>
+          <% unless user.email == 'guest@example.com' %>
+            <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm"  %>
+          <% end %>
         </li>
       <% end %>
     </ul>
