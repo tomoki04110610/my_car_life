@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h4><%= @post.title %></h4>
+    </div>
+    <div class="col-12 text-center">
+      <h4><%= @post.body %></h4>
+    </div>
+    <div class="col-12 text-center">
+      <h4><%= @post.user.nickname %></h4>
+    </div>
+
+    <div class="col-12 text-center">
+      <h6>コメント一覧</h6>
+    </div>
+    <% @comments.each do |comment| %>
+      <div class="col-8">
+        <p><%= comment.comment %></p>
+      </div>
+      <div class="col-2">
+        <p><%= comment.user.nickname %></p>
+      </div>
+      <div class="col-2">
+        <%= link_to "削除", admin_post_comment_path(comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>
