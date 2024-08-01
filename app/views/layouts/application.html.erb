@@ -112,12 +112,14 @@
         </nav>
       <% end %>
     </header>
-    
+
     <main class="d-flex">
-      <% flash.each do |message_type, message| %>
-        <div class = "flash-message <%= message_type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
+      <div class="container-fluid">
+        <% flash.each do |message_type, message| %>
+          <div class = "row flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>
