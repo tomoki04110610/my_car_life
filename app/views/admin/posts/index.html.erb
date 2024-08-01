@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-4">
+        <h5><%= post.title %></h5>
+        <p>コメント数：<%= post.post_comments.count %></p>
+        <div>
+          <%= link_to "詳細ページへ", admin_post_path(post.id), class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
