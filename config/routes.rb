@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get '/homes/about', to: "homes#about", as: "about"
     get "/search", to: "searches#search", as: "search"
     resources :users, only: [:show, :index, :edit, :update, :destroy]
-    resources :posts
+    resources :posts, except: [:new]
       resources :post_comments, only: [:create, :destroy]
     resources :car_models, only: [:new, :create, :edit, :update, :destroy]
     resources :driving_distances, only: [:new, :create]
