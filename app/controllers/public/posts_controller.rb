@@ -1,10 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = current_user.posts.new(post_params)
     if @post.save
@@ -14,7 +10,7 @@ class Public::PostsController < ApplicationController
       flash.now[:alert] = "投稿に失敗しました。"
       @user = current_user
       @driving_distance = DrivingDistance.new
-      render :"users/mypage"
+      render :"public/users/mypage"
     end
   end
 

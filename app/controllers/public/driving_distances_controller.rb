@@ -15,7 +15,7 @@ class Public::DrivingDistancesController < ApplicationController
       @user = current_user
       # @driving_distance = DrivingDistance.new
       @post = Post.new
-      render "users/mypage"
+      render "public/users/mypage"
     end
   end
 
