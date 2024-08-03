@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row d-flex justfy-content-center text-center mb-2">
+    <div class="col-12">
+      <h2>ジャンル一覧</h2>
+    </div>
+  </div>
+  <ul class="row justfy-content-center text-center">
+    <div class="col-lg-4 col-sm-12">
+      <div class="row">
+        <% @genres.each do |genre| %>
+        <li class="col-12" style="list-style: none;">
+          <%= genre.id %> - <%= genre.genre_name %>
+          <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %>
+        </li>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-4 col-sm-12">
+      <%= render "admin/genres/new", genre: @genre %>
+    </div>
+  </ul>
+</div>

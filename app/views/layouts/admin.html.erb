@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin - my_car_life</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
-<body>
-  <header>
-    <% if admin_signed_in? %>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
-        <div class="container d-flex">
-          <span class="navbar-brand nav-link text-light">
-            My Car Life
-          </span>
+  <head>
+    <title>Admin - my_car_life</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav text-right">
-              <li class="nav-item">
-                <%= link_to admin_dashboards_path,class: "nav-link text-light" do %>
-                  <i class="fa-solid fa-users"></i>ユーザー一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to admin_posts_path,class: "nav-link text-light" do %>
-                  <i class="fa-solid fa-list"></i>投稿一覧
-                <% end %>
-              </li>
-              <li class="nav-item">
-                <%= link_to destroy_admin_session_path, method: :delete,class: "nav-link text-light" do %>
-                  <i class="fa-solid fa-right-from-bracket"></i>ログアウト
-                <% end %>
-              </li>
-            </ul>
+
+  <body>
+    <header>
+      <% if admin_signed_in? %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+          <div class="container d-flex">
+            <span class="navbar-brand nav-link text-light">
+              My Car Life
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                  <%= link_to admin_dashboards_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-users"></i>ユーザー一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_posts_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-list"></i>投稿一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to admin_genres_path,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-list"></i>ジャンル一覧
+                  <% end %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path, method: :delete,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+                  <% end %>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    <% end %>
-  </header>
-  <%= yield %>
-</body>
+        </nav>
+      <% else %>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
+          <div class="container d-flex">
+            <span class="navbar-brand nav-link text-light">
+              My Car Life
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                  <%= link_to destroy_admin_session_path, method: :delete,class: "nav-link text-light" do %>
+                    <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      <% end %>
+    </header>
+
+    <main class="d-flex">
+      <div class="container-fluid">
+        <% flash.each do |message_type, message| %>
+          <div class = "row flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </main>
+  </body>
 </html>

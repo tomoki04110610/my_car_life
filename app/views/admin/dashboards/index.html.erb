@@ -4,16 +4,14 @@
       <h2>全ユーザー一覧</h2>
     </div>
   </div>
-  <div class="row justfy-content-center text-center">
-    <ul class="row justfy-content-center text-center">
-      <% @users.each do |user| %>
-        <li class="col-12" style="list-style: none;">
-          <%= user.nickname %> - <%=user.email %>
-          <% unless user.email == 'guest@example.com' %>
-            <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm"  %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <ul class="row justfy-content-center text-center">
+    <% @users.each do |user| %>
+      <li class="col-12" style="list-style: none;">
+        <%= user.nickname %> - <%= user.email %>
+        <% unless user.email == 'guest@example.com' %>
+          <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
