@@ -5,17 +5,17 @@
     </div>
 
     <div class="col-12">
-      <% if @genre.errors.any? %>
-        <%= @genre.errors.count %>件のエラーが発生しました
+      <% if genre.errors.any? %>
+        <%= genre.errors.count %>件のエラーが発生しました
         <ul>
-          <% @genre.errors.full_messages.each do |message| %>
+          <% genre.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
       <% end %>
     </div>
     <div class="row">
-      <%= form_with model: @genre do |f| %>
+      <%= form_with model: Genre.new, url: admin_genres_path do |f| %>
       <div class="col-12">
         <h4>ジャンル名</h4>
         <%= f.text_field :genre_name %>
