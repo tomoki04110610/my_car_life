@@ -39,6 +39,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @driving_distance = DrivingDistance.new
     @post = Post.new
+    generate_notification_message
   end
 
   private
@@ -58,6 +59,23 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to mypage_path, alert: "他のユーザーの登録情報は編集できません"
+    end
+  end
+  
+  def generate_notification_message
+    @user.car_models.each do |car_model|
+      post = @user.posts.where(car_model_id: car_model.id).where(genre_id: 1).last
+      oil_last_change_date = post.created_at.to_date
+      days_since_last_change = (Date.today - oil_last_change_date).to_i
+      default_oil_change_days = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
+      if days_since_last_change > default_oil_change_days
+        message = "次回エンジンオイル交換は#{days_since_last_change - default_oil_change_days}日後です。"
+      elsif days_since_last_change == default_oil_change_days
+        message = "本日エンジンオイル交換日です。"
+      else 
+        message = "エンジンオイル交換時期を#{days_since_last_change}日過ぎました。早めに交換しましょう。"
+      end
+      @user.notifications.create(message: message, post_id: post)
     end
   end
 
