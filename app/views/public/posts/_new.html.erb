@@ -29,6 +29,10 @@
         <%= f.collection_select :genre_id, Genre.all, :id, :genre_name, prompt: "ジャンルを選択してください" %>
       </div>
       <div class="col-12">
+        <h4>車種</h4>
+        <%= f.collection_select :car_model_id, current_user.car_models.all, :id, :name, prompt: "車種を選択してください" %>
+      </div>
+      <div class="col-12">
         <h4>画像</h4>
         <%= f.file_field :post_image, accept: "image/*" %>
       </div>
