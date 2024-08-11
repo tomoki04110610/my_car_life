@@ -61,22 +61,52 @@ class Public::UsersController < ApplicationController
       redirect_to mypage_path, alert: "他のユーザーの登録情報は編集できません"
     end
   end
-  
+
   def generate_notification_message
+    # エンジンオイル交換の通知メッセージ作成
+    @user.posts.presnt?
     @user.car_models.each do |car_model|
-      post = @user.posts.where(car_model_id: car_model.id).where(genre_id: 1).last
+      post = @user.posts.where(car_model_id: car_model.id, genre_id: 1).last
+      if post.nil?
+        next
+      end
+      
       oil_last_change_date = post.created_at.to_date
       days_since_last_change = (Date.today - oil_last_change_date).to_i
+      distance_since_last_change = post.driving_distance
       default_oil_change_days = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
-      if days_since_last_change > default_oil_change_days
-        message = "次回エンジンオイル交換は#{days_since_last_change - default_oil_change_days}日後です。"
-      elsif days_since_last_change == default_oil_change_days
-        message = "本日エンジンオイル交換日です。"
-      else 
-        message = "エンジンオイル交換時期を#{days_since_last_change}日過ぎました。早めに交換しましょう。"
+      default_oil_change_distance = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
+      
+      if days_since_last_change > default_oil_change_days && distance_since_last_change > default_oil_change_distance
+        message = "次回エンジンオイル交換は#{days_since_last_change - default_oil_change_days}日後か#{distance_since_last_change - default_oil_change_distance}km後のどちらか早い方です。"
+      else
+        message = "エンジンオイル交換時期が過ぎました。早めに交換しましょう。"
       end
+      
       @user.notifications.create(message: message, post_id: post)
     end
   end
 
+  def generate_notification_message
+    # 洗車の通知メッセージ作成
+    @user.posts.present?
+    @user.car_models.each do |car_model|
+      post = @user.posts.where(car_model_id: car_model.id, genre_id: 2).last
+      if post.nil?
+        next
+      end
+
+      wash_last_date = post.created_at.to_date
+      days_since_last_wash = (Date.today - wash_last_date).to_i
+      default_wash_days = @user.default_values.find_by(genre_id: 2, car_model_id: car_model.id).default_wash_days
+
+      if days_since_last_wash > default_wash_days
+        message = "#{default_wash_days - wash_last_date}日後洗車時期です。"
+      else
+        message = "洗車時期を過ぎました、早めに洗車をしましょう。"
+      end
+
+      @user.notifications.create(message: message, post_id: post)
+    end
+  end
 end
