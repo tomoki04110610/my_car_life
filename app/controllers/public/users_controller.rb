@@ -69,7 +69,8 @@ class Public::UsersController < ApplicationController
       if oil_post
         oil_last_change_date = oil_post.created_at.to_date
         days_since_last_change = (Date.today - oil_last_change_date).to_i
-        distance_since_last_change = oil_post.driving_distance
+        oil_last_change_driving_distance = oil_post.car_model.distance
+        distance_since_last_change = (car_model.order(distance: :desc).limit(1) - oil_last_change_driving_distance )
         default_oil_change_days = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
         default_oil_change_distance = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
         if days_since_last_change > default_oil_change_days && distance_since_last_change > default_oil_change_distance
