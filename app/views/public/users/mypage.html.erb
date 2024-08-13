@@ -31,19 +31,11 @@
     </div>
   </div>
 
-  <div class="row justify-content-center text-center">
-    <div class="col-12 text-center">
-      <% @user.notifications.order(created_at: :desc).each do |notification| %>
-        <div class="notification">
-          <%= notification.message %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+
 
   <div class="row d-flex text-center justify-content-center">
     <% @user.car_models.each do |car_model|%>
-      <div class="col-lg-4 col-sm-12 py-2 text-center">
+      <div class="col-lg-3 col-sm-12 py-2 text-center">
         <div class="row">
           <div class="col-12">
             <h4>登録車種名</h4>
@@ -61,7 +53,7 @@
       </div>
 
       <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
-      <div class="col-lg-4 col-sm-12 py-2 text-center">
+      <div class="col-lg-3 col-sm-12 py-2 text-center">
         <h4>最新の走行距離</h4>
         <% if latest_driving_distance %>
           <p><%= latest_driving_distance.distance %>km</p>
@@ -69,9 +61,15 @@
           <p>走行距離が登録されていません。</p>
         <% end %>
       </div>
-      <div class="col-lg-4 col-sm-12 text-center">
+      <div class="col-lg-3 col-sm-12 text-center">
         <%= render "public/driving_distances/new", car_model: car_model %>
       </div>
-      <% end %>
+      <div class="col-lg-3 col-sm-12 py-2 text-center">
+        <% car_model.notifications.each do |notification|%>
+         <%= notification.message %><br>
+        <% end %>
+      </div>
+    <% end %>
+
   </div>
 </div>

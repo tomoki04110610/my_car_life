@@ -47,7 +47,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :genre_id, :post_image, :notification_id, :car_model_id, :distance)
+    params.require(:post).permit(:title, :body, :genre_id, :post_image, :notification_id, :car_model_id, :driving_distance_id)
   end
 
   def is_matching_login_user

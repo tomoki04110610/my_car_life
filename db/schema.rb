@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2024_08_12_164247) do
 
   create_table "default_values", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "genre_id"
     t.integer "car_model_id"
     t.integer "default_oil_change_mileage", default: 10000
     t.integer "default_oil_change_days", default: 30
@@ -88,6 +87,7 @@ ActiveRecord::Schema.define(version: 2024_08_12_164247) do
     t.integer "user_id"
     t.integer "post_id"
     t.string "message"
+    t.integer "car_model_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

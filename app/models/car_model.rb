@@ -3,6 +3,7 @@ class CarModel < ApplicationRecord
   has_many :posts
   has_many :driving_distances, dependent: :destroy
   has_many :default_values, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :name, presence: true
 end

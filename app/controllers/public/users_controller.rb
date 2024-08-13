@@ -63,36 +63,45 @@ class Public::UsersController < ApplicationController
   end
 
   def generate_notification_messages
+    @user.notifications.destroy_all
     @user.car_models.each do |car_model|
       # エンジンオイル交換の通知メッセージ作成
       oil_post = @user.posts.where(car_model_id: car_model.id, genre_id: 1).last
       if oil_post
         oil_last_change_date = oil_post.created_at.to_date
         days_since_last_change = (Date.today - oil_last_change_date).to_i
-        oil_last_change_driving_distance = oil_post.car_model.distance
-        distance_since_last_change = (car_model.order(distance: :desc).limit(1) - oil_last_change_driving_distance )
-        default_oil_change_days = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
-        default_oil_change_distance = @user.default_values.find_by(genre_id: 1, car_model_id: car_model.id).default_oil_change_days
+        oil_last_change_driving_distance = oil_post.car_model.driving_distances.last.distance
+        distance_since_last_change = (oil_last_change_driving_distance - oil_post.car_model.driving_distances.last(2)[0].distance)
+        defaultvalue = @user.default_values.find_by(car_model_id: car_model.id)
+        if defaultvalue == nil
+          return
+        end
+        default_oil_change_days = defaultvalue.default_oil_change_days
+        default_oil_change_distance = defaultvalue.default_oil_change_mileage
         if days_since_last_change > default_oil_change_days && distance_since_last_change > default_oil_change_distance
           oil_message = "次回エンジンオイル交換は#{days_since_last_change - default_oil_change_days}日後か#{distance_since_last_change - default_oil_change_distance}km後のどちらか早い方です。"
         else
           oil_message = "エンジンオイル交換時期が過ぎました。早めに交換しましょう。"
         end
-        @user.notifications.create(message: oil_message, post_id: oil_post.id)
+        @user.notifications.create(message: oil_message, post_id: oil_post.id, car_model_id: car_model.id)
       end
-  
+
       # 洗車の通知メッセージ作成
       wash_post = @user.posts.where(car_model_id: car_model.id, genre_id: 2).last
       if wash_post
         wash_last_date = wash_post.created_at.to_date
         days_since_last_wash = (Date.today - wash_last_date).to_i
-        default_wash_days = @user.default_values.find_by(genre_id: 2, car_model_id: car_model.id).default_wash_days
+        defaultvalue = @user.default_values.find_by(car_model_id: car_model.id)
+        if defaultvalue == nil
+          return
+        end
+        default_wash_days = defaultvalue.default_carwash_days
         if days_since_last_wash > default_wash_days
           wash_message = "#{default_wash_days - days_since_last_wash}日後洗車時期です。"
         else
           wash_message = "洗車時期を過ぎました、早めに洗車をしましょう。"
         end
-        @user.notifications.create(message: wash_message, post_id: wash_post.id)
+        @user.notifications.create(message: wash_message, post_id: wash_post.id, car_model_id: car_model.id)
       end
     end
   end

@@ -6,6 +6,7 @@ class Public::CarModelsController < ApplicationController
   def create
     @car_model = current_user.car_models.new(car_model_params)
     if @car_model.save
+      current_user.default_values.create(car_model_id: @car_model.id)
       flash[:notice] = "車種登録に成功しました。"
       redirect_to mypage_path
     else
