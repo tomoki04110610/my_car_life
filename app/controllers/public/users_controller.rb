@@ -78,10 +78,10 @@ class Public::UsersController < ApplicationController
         end
         default_oil_change_days = defaultvalue.default_oil_change_days
         default_oil_change_distance = defaultvalue.default_oil_change_mileage
-        if default_oil_change_days > days_since_last_change or default_oil_change_distance > distance_since_last_change
-          oil_message = "次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_since_last_change}km後のどちらか早い方です。"
+        if default_oil_change_days > days_since_last_change || default_oil_change_distance > distance_since_last_change
+          oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_since_last_change}km後のどちらか早い方です。"
         else
-          oil_message = "エンジンオイル交換時期が過ぎました。早めに交換しましょう。"
+          oil_message = "#{car_model.name}のエンジンオイル交換時期が過ぎました。早めに交換しましょう。"
         end
         @user.notifications.create(message: oil_message, post_id: oil_post.id, car_model_id: car_model.id)
       end
@@ -97,7 +97,7 @@ class Public::UsersController < ApplicationController
         end
         default_wash_days = defaultvalue.default_carwash_days
         if default_wash_days > days_since_last_wash
-          wash_message = "#{default_wash_days - days_since_last_wash}日後洗車時期です。"
+          wash_message = "#{car_model.name}は#{default_wash_days - days_since_last_wash}日後洗車時期です。"
         else
           wash_message = "洗車時期を過ぎました、早めに洗車をしましょう。"
         end

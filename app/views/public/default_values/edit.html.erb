@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col-12 text-center">
+      <h2>通知表示デフォルト編集画面</h2>
+    </div>
+
+    <% if @default_value.errors.any? %>
+      <%= @default_value.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @default_value.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <%= form_with model: @default_value do |f| %>
+      <div class="col">
+        <h4>オイル交換走行距離</h4>
+      </div>
+      <div class="col">
+        <%= f.text_field :default_oil_change_mileage %>
+      </div>
+      <div class="col">
+        <h4>オイル交換経過日数</h4>
+      </div>
+      <div class="col">
+        <%= f.text_field :default_oil_change_days %>
+      </div>
+      <div class="col">
+        <h4>洗車経過日数</h4>
+      </div>
+      <div class="col">
+        <%= f.text_field :default_carwash_days %>
+      </div>
+      <div class="col pt-2">
+        <%= f.submit '更新', class: "btn btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>

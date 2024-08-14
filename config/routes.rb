@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     resources :car_models, only: [:new, :create, :edit, :update, :destroy]
     resources :driving_distances, only: [:new, :create]
+    resources :default_values, only: [:edit, :update]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 
