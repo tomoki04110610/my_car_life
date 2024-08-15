@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "/search", to: "searches#search", as: "search"
     resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :posts, except: [:new] do
-      resource :like, only: [:create, :destroy]
+      resource :like, only: [:create, :destroy, :index]
       resources :post_comments, only: [:create, :destroy]
     end
     resources :car_models, only: [:new, :create, :edit, :update, :destroy]
