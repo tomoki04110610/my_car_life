@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :car_model, optional: true
   has_many :post_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :likes,dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
@@ -27,7 +28,11 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', '%' + content).or(Post.where('body LIKE ?', '%' + content))
     else
       Post.where('title LIKE ?', '%' + content + '%').or(Post.where('body LIKE ?', '%' + content + '%'))
-
     end
+
+    def liked_by?(user)
+      likes.exists?(user_id: user.id)
+    end
+
   end
 end

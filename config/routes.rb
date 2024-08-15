@@ -16,14 +16,12 @@ Rails.application.routes.draw do
     get "/search", to: "searches#search", as: "search"
     resources :users, only: [:show, :index, :edit, :update, :destroy]
     resources :posts, except: [:new]
+      resource :like, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     resources :car_models, only: [:new, :create, :edit, :update, :destroy]
     resources :driving_distances, only: [:new, :create]
     resources :default_values, only: [:edit, :update]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-
-
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

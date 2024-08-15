@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :driving_distances, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :default_values,dependent: :destroy
+  has_many :likes,dependent: :destroy
 
   has_one_attached :profile_image
 
