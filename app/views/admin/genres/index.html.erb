@@ -10,7 +10,9 @@
         <% @genres.each do |genre| %>
         <li class="col-12 my-1" style="list-style: none;">
           <%= genre.id %> - <%= genre.genre_name %>
-          <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %>
+          <% unless [1, 2, 3].include?(genre.id) %>
+            <%= link_to '削除', admin_genre_path(genre), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %>
+          <% end %>
         </li>
         <% end %>
       </div>
