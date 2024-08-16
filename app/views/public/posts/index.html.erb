@@ -28,6 +28,7 @@
             <h5>ニックネーム</h5>
             <p><%= post.user.nickname %></p>
             <p><%= "#{post.post_comments.count} コメント" %></p>
+            <p><%= "♥#{post.likes.count} いいね" %></p>
             <p><%= link_to "投稿詳細へ", post_path(post), class: "btn btn-info" %></p>
           </div>
         </div>
