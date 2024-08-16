@@ -24,6 +24,19 @@
           <p><%= @post.genre.genre_name %></p>
           <h5>ニックネーム</h5>
           <p><%= @post.user.nickname %></p>
+          <% if @post.liked_by?(current_user) %>
+            <p>
+              <%= link_to post_like_path(@post), method: :delete do %>
+                ♥<%= @post.likes.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to post_like_path(@post), method: :post do %>
+                ♡<%= @post.likes.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
           <%= link_to "投稿者詳細を見る", user_path(@post.user.id), class: "btn btn-info" %>
         </div>
       </div>
@@ -40,28 +53,28 @@
       </div>
   </div>
 
-  <div class="row  d-flex justify-content-center">
-    <div class="col-lg-12">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-12 text-center">
       <p>コメント件数：<%= @post.post_comments.count %></p>
     </div>
-      <% @post.post_comments.each do |post_comment| %>
-        <div class="col-lg-12">
-          <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
-          <p><%= post_comment.user.nickname %></p>
-          <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-          <p><%= post_comment.comment %></p>
-          <% if post_comment.user == current_user %>
-            <%= link_to "削除", post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm mb-2" %>
-          <% end %>
-        </div>
+    <div class="col-lg-12 text-center">
+      <%= hidden_field_tag :post_id, @post.id %>
+      <%= form_with model: [@post, @post_comment], url: post_post_comments_path(post_id: @post.id) do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+        <p class="py-2 text-center"><%= f.submit "送信する" %></p>
       <% end %>
     </div>
-    <div class="col-lg-6">
-      <%= hidden_field_tag :post_id, @post.id %>
-      <%= form_with model: [@post, @post_comment], url: post_comments_path(post_id: @post.id) do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <p class="py-2"><%= f.submit "送信する" %></p>
-      <% end %>
+    <% @post.post_comments.each do |post_comment| %>
+      <div class="col-12 text-center d-flex justify-content-around">
+        <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
+        <p><%= post_comment.user.nickname %></p>
+        <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+        <p><%= post_comment.comment %></p>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm mb-2" %>
+        <% end %>
+      </div>
+    <% end %>
     </div>
   </div>
 </div>

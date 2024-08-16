@@ -29,10 +29,10 @@ class Post < ApplicationRecord
     else
       Post.where('title LIKE ?', '%' + content + '%').or(Post.where('body LIKE ?', '%' + content + '%'))
     end
-
-    def liked_by?(user)
-      likes.exists?(user_id: user.id)
-    end
-
   end
+  
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
+  
 end
