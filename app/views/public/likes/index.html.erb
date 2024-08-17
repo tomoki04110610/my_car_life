@@ -1,2 +1,22 @@
-<h1>Likes#index</h1>
-<p>Find me in app/views/likes/index.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>いいね一覧</h1>
+  </div>
+
+  <div class="row justify-content-center">
+    <% @likes.each do |like| %>
+      <div class="col-12 text-center d-flex justify-content-around">
+        <p><%= like.post.title %></p>
+        <p>
+          <% max_length = 15 %>
+          <% truncated_body = like.post.body.truncate(max_length, omission: '...') %>
+          <%= truncated_body %>
+        </p>
+        <p><%= like.post.genre.genre_name %></p>
+        <p><%= image_tag like.user.get_profile_image(50,50) %></p>
+        <p><%= like.user.nickname %></p>
+        <p class="py-4"><%= link_to "投稿詳細を見る", post_path(like.post.user.id), class: "btn btn-info btn-sm" %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

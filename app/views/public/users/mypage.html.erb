@@ -68,7 +68,7 @@
         <%= render "public/driving_distances/new", car_model: car_model %>
       </div>
       <div class="col-lg-3 col-sm-12 py-2 text-center">
-        <%= link_to "通知表示編集",edit_default_value_path(car_model.default_values.first.id), class: "btn btn-success" %>
+        <%= link_to "#{car_model.name}の通知表示基準値編集",edit_default_value_path(car_model.default_values.first.id), class: "btn btn-success" %>
       </div>
     <% end %>
 
