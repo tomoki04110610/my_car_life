@@ -37,6 +37,9 @@
               <% end %>
             </p>
           <% end %>
+          <p>フォロー数: <%= @post.user.followings.count %></p>
+          <p>フォロワー数: <%= @post.user.followers.count %></p>
+          <p><%= render "public/relationships/btn", user: @post.user, options: { class: "follow-link" } %></p>
           <%= link_to "投稿者詳細を見る", user_path(@post.user.id), class: "btn btn-info" %>
         </div>
       </div>

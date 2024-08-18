@@ -32,44 +32,47 @@
   </div>
 
   <div class="row d-flex text-center justify-content-center">
-    <% @user.car_models.each do |car_model|%>
-      <div class="col-12 mt-2">
-        <% car_model.notifications.each do |notification|%>
-         <%= notification.message %><br>
-        <% end %>
-      </div>
-      <div class="col-lg-3 col-sm-12 py-2 text-center">
-        <div class="row">
-          <div class="col-12">
-            <h4>登録車種名</h4>
-          </div>
-          <div class="col-12">
-            <p><%= car_model.name %></p>
-          </div>
-          <div class="col-12 my-2">
-            <%= link_to "車種名編集", edit_car_model_path(car_model.id), class: "btn btn-success" %>
-          </div>
-          <div class="col-12 my-2">
-            <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+    <% if @user.car_models.present? %>
+      <% @user.car_models.each do |car_model|%>
+        <% next if car_model.default_values.empty? %>
+        <div class="col-12 mt-2">
+          <% car_model.notifications.each do |notification|%>
+           <%= notification.message %><br>
+          <% end %>
+        </div>
+        <div class="col-lg-3 col-sm-12 py-2 text-center">
+          <div class="row">
+            <div class="col-12">
+              <h4>登録車種名</h4>
+            </div>
+            <div class="col-12">
+              <p><%= car_model.name %></p>
+            </div>
+            <div class="col-12 my-2">
+              <%= link_to "車種名編集", edit_car_model_path(car_model.id), class: "btn btn-success" %>
+            </div>
+            <div class="col-12 my-2">
+              <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+            </div>
           </div>
         </div>
-      </div>
 
-      <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
-      <div class="col-lg-3 col-sm-12 py-2 text-center">
-        <h4>最新の走行距離</h4>
-        <% if latest_driving_distance %>
-          <p><%= latest_driving_distance.distance %>km</p>
-        <% else %>
-          <p>走行距離が登録されていません。</p>
-        <% end %>
-      </div>
-      <div class="col-lg-3 col-sm-12 text-center">
-        <%= render "public/driving_distances/new", car_model: car_model %>
-      </div>
-      <div class="col-lg-3 col-sm-12 py-2 text-center">
-        <%= link_to "#{car_model.name}の通知表示基準値編集",edit_default_value_path(car_model.default_values.first.id), class: "btn btn-success" %>
-      </div>
+        <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
+        <div class="col-lg-3 col-sm-12 py-2 text-center">
+          <h4>最新の走行距離</h4>
+          <% if latest_driving_distance %>
+            <p><%= latest_driving_distance.distance %>km</p>
+          <% else %>
+            <p>走行距離が登録されていません。</p>
+          <% end %>
+        </div>
+        <div class="col-lg-3 col-sm-12 text-center">
+          <%= render "public/driving_distances/new", car_model: car_model %>
+        </div>
+        <div class="col-lg-3 col-sm-12 py-2 text-center">
+          <%= link_to "#{car_model.name}の通知表示基準値編集",edit_default_value_path(car_model.default_values.first.id), class: "btn btn-success" %>
+        </div>
+      <% end %>
     <% end %>
 
   </div>

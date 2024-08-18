@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "/search", to: "searches#search", as: "search"
     get "/likes", to: "likes#index", as: "likes"
     resources :users, only: [:show, :index, :edit, :update, :destroy] do
-      resource :relationships, only: [:crete, :destroy]
+      resource :relationships, only: [:create, :destroy]
         get "followings" => "relationships#followings", as: "followings"
         get "followers" => "relationships#followers", as: "followers"
     end

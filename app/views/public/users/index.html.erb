@@ -19,6 +19,9 @@
             <span>
               <%= link_to user.nickname, user_path(user.id) %>
             </span>
+            <p>フォロー数: <%= user.followings.count %></p>
+            <p>フォロワー数: <%= user.followers.count %></p>
+            <p><%= render "public/relationships/btn", user: user, options: { class: "follow-link" } %></p>
           </div>
         </div>
       </div>
