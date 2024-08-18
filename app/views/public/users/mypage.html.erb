@@ -18,6 +18,12 @@
           <p><%= @user.nickname %></p>
         </div>
 
+        <div class="col-12">
+          <p><%= link_to "フォロー数: #{@user.followings.count}", user_followings_path(@user.id) %></p>
+          <p><%= link_to "フォロワー数: #{@user.followers.count}", user_followers_path(@user.id) %></p>
+        </div>
+
+
         <div class="col-12 my-2">
           <%= link_to "ユーザー編集", edit_user_path(current_user.id), class: "btn btn-success" %>
         </div>
