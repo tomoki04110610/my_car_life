@@ -70,9 +70,9 @@ class Public::UsersController < ApplicationController
       if oil_post
         oil_last_change_date = oil_post.created_at.to_date
         days_since_last_change = (Date.today - oil_last_change_date).to_i
-        oil_last_change_driving_distance = oil_post.car_model.driving_distances.last.distance
-        distance_since_last_change = (oil_last_change_driving_distance - oil_post.car_model.driving_distances.last(2)[0].distance)
-        pp oil_last_change_driving_distance
+        latest_driving_distance = oil_post.car_model.driving_distances.last.distance
+        distance_traveled = (latest_driving_distance - oil_post.car_model.driving_distances.last(2)[0].distance)
+        pp latest_driving_distance
         pp oil_post.car_model.driving_distances.last(2)[0].distance
         defaultvalue = @user.default_values.find_by(car_model_id: car_model.id)
         if defaultvalue == nil
@@ -83,9 +83,9 @@ class Public::UsersController < ApplicationController
         pp default_oil_change_days
         pp days_since_last_change
         pp default_oil_change_distance
-        pp distance_since_last_change
-        if default_oil_change_days > days_since_last_change || default_oil_change_distance > distance_since_last_change
-          oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_since_last_change}km後のどちらか早い方です。"
+        pp distance_traveled
+        if default_oil_change_days > days_since_last_change || default_oil_change_distance > distance_traveled
+          oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_traveled}km後のどちらか早い方です。"
         else
           oil_message = "#{car_model.name}のエンジンオイル交換時期が過ぎました。早めに交換しましょう。"
         end
