@@ -72,12 +72,18 @@ class Public::UsersController < ApplicationController
         days_since_last_change = (Date.today - oil_last_change_date).to_i
         oil_last_change_driving_distance = oil_post.car_model.driving_distances.last.distance
         distance_since_last_change = (oil_last_change_driving_distance - oil_post.car_model.driving_distances.last(2)[0].distance)
+        pp oil_last_change_driving_distance
+        pp oil_post.car_model.driving_distances.last(2)[0].distance
         defaultvalue = @user.default_values.find_by(car_model_id: car_model.id)
         if defaultvalue == nil
           return
         end
         default_oil_change_days = defaultvalue.default_oil_change_days
         default_oil_change_distance = defaultvalue.default_oil_change_mileage
+        pp default_oil_change_days
+        pp days_since_last_change
+        pp default_oil_change_distance
+        pp distance_since_last_change
         if default_oil_change_days > days_since_last_change || default_oil_change_distance > distance_since_last_change
           oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_since_last_change}km後のどちらか早い方です。"
         else
