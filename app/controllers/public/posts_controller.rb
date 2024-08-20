@@ -3,6 +3,11 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
+    if @post.genre_id == 1
+      driving_distance = DrivingDistance.where(car_model_id: @post.car_model_id).order(created_at: :desc).first
+      @post.distance = driving_distance.distance if driving_distance.present?
+    end
+    
     if @post.save
       flash[:notice] = "投稿に成功しました。"
       redirect_to post_path(@post.id)
@@ -47,7 +52,7 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :genre_id, :post_image, :notification_id, :car_model_id, :driving_distance_id)
+    params.require(:post).permit(:title, :body, :genre_id, :post_image, :notification_id, :car_model_id, :distance)
   end
 
   def is_matching_login_user

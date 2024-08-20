@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :likes,dependent: :destroy
-  has_one :driving_distance
 
   validates :title, presence: true
   validates :body, presence: true

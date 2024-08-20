@@ -71,9 +71,9 @@ class Public::UsersController < ApplicationController
         oil_last_change_date = oil_post.created_at.to_date
         days_since_last_change = (Date.today - oil_last_change_date).to_i
         latest_driving_distance = oil_post.car_model.driving_distances.last.distance
-        distance_traveled = (latest_driving_distance - oil_post.car_model.driving_distances.last(2)[0].distance)
+        distance_traveled = (latest_driving_distance - oil_post.distance)
         pp latest_driving_distance
-        pp oil_post.car_model.driving_distances.last(2)[0].distance
+        pp oil_post.distance
         defaultvalue = @user.default_values.find_by(car_model_id: car_model.id)
         if defaultvalue == nil
           return
