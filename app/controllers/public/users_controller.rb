@@ -84,10 +84,10 @@ class Public::UsersController < ApplicationController
         pp days_since_last_change
         pp default_oil_change_distance
         pp distance_traveled
-        if default_oil_change_days > days_since_last_change || default_oil_change_distance > distance_traveled
-          oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_traveled}km後のどちらか早い方です。"
-        else
+        if default_oil_change_days < days_since_last_change || default_oil_change_distance < distance_traveled
           oil_message = "#{car_model.name}のエンジンオイル交換時期が過ぎました。早めに交換しましょう。"
+        else
+          oil_message = "#{car_model.name}の次回エンジンオイル交換は#{default_oil_change_days - days_since_last_change}日後か#{default_oil_change_distance - distance_traveled}km後のどちらか早い方です。"
         end
         @user.notifications.create(message: oil_message, post_id: oil_post.id, car_model_id: car_model.id)
       end
