@@ -4,6 +4,12 @@
       <h1>新規車種登録</h1>
     </div>
 
+    <div class="col-12 text-center pt-2">
+      <% if current_user.car_models.empty? %>
+        <p>愛車を登録しよう</p>
+      <% end %>
+    </div>
+
     <div class="col-12 text-center">
       <% if @car_model.errors.any? %>
         <%= @car_model.errors.count %>件のエラーが発生しました
