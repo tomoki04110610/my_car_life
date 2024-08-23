@@ -14,14 +14,18 @@
     <% end %>
 
     <%= form_with model: @car_model do |f| %>
-      <div class="col">
-        <h4>車種名</h4>
-      </div>
-      <div class="col">
-        <%= f.text_field :name%>
-      </div>
-      <div class="col pt-2">
-        <%= f.submit '更新', class: "btn btn-warning" %>
+      <div class="card w-100 mx-auto">
+        <div class="card-body text-muted">
+          <div class="col">
+            <h4>車種名</h4>
+          </div>
+          <div class="col">
+            <%= f.text_field :name%>
+          </div>
+          <div class="col pt-2">
+            <%= f.submit '更新', class: "btn btn-warning" %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

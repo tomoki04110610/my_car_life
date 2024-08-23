@@ -14,17 +14,17 @@
             <h4 class="card-title">プロフィール画像</h4>
             <%= image_tag @user.get_profile_image(100, 100), class: "img-fluid" %>
           </div>
-  
+
           <div class="mb-4">
             <h4 class="card-title">ニックネーム</h4>
             <p class="card-text"><%= @user.nickname %></p>
           </div>
-  
+
           <div class="mb-4">
             <p><%= link_to "フォロー数: #{@user.followings.count}", user_followings_path(@user.id), class: "card-link" %></p>
             <p><%= link_to "フォロワー数: #{@user.followers.count}", user_followers_path(@user.id), class: "card-link" %></p>
           </div>
-  
+
           <div class="mb-4">
             <%= link_to "ユーザー編集", edit_user_path(current_user.id), class: "btn btn-success" %>
             <%= link_to "退会", user_path(@user.id), method: :delete, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
@@ -46,9 +46,9 @@
   <% if @user.car_models.present? %>
     <% @user.car_models.each do |car_model|%>
       <% next if car_model.default_values.empty? %>
-      
+
       <div class="col-12 my-2">
-        <div class="card w-100">
+        <div class="card w-100 mx-auto">
           <div class="card-body">
             <!--通知メッセージ-->
             <div class="col-12 mb-2 text-muted">
@@ -56,7 +56,7 @@
                 <p class="text-muted"><%= notification.message %></p>
               <% end %>
             </div>
-            
+
             <div class="row text-muted d-flex justify-content-center">
               <!--車種情報-->
               <div class="col-lg-3 col-sm-12 py-2 d-flex flex-column justify-content-center align-items-center">
@@ -69,23 +69,24 @@
                   <%= link_to "車種削除", car_model_path(car_model.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
                 </div>
               </div>
-              
+
               <!--最新の走行距離-->
               <% latest_driving_distance = car_model.driving_distances.order(created_at: :desc).first %>
               <div class="col-lg-3 col-sm-12 py-2 d-flex flex-column justify-content-center align-items-center">
                 <h4>最新の走行距離</h4>
                 <% if latest_driving_distance %>
                   <p><%= latest_driving_distance.distance %>km</p>
+                  <p>投稿日: <%= latest_driving_distance.created_at.strftime("%Y年%m月%d日") %></p>
                 <% else %>
                   <p>走行距離が登録されていません。</p>
                 <% end %>
               </div>
-              
+
               <!--走行距離の新規登録-->
               <div class="col-lg-3 col-sm-12 py-2 d-flex flex-column justify-content-center align-items-center">
                 <%= render "public/driving_distances/new", car_model: car_model %>
               </div>
-              
+
               <!--通知表示基準値の編集-->
               <div class="col-lg-3 col-sm-12 py-2 d-flex flex-column justify-content-center align-items-center">
                 <%= link_to "#{car_model.name}の通知表示基準値編集",edit_default_value_path(car_model.default_values.first.id), class: "btn btn-success text-truncate d-inline-block" %>
@@ -94,7 +95,6 @@
           </div>
         </div>
       </div>
-
     <% end %>
   <% end %>
 </div>

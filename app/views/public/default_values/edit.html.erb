@@ -14,26 +14,30 @@
     <% end %>
 
     <%= form_with model: @default_value do |f| %>
-      <div class="col">
-        <h4>オイル交換走行距離</h4>
-      </div>
-      <div class="col">
-        <%= f.text_field :default_oil_change_mileage %>
-      </div>
-      <div class="col">
-        <h4>オイル交換経過日数</h4>
-      </div>
-      <div class="col">
-        <%= f.text_field :default_oil_change_days %>
-      </div>
-      <div class="col">
-        <h4>洗車経過日数</h4>
-      </div>
-      <div class="col">
-        <%= f.text_field :default_carwash_days %>
-      </div>
-      <div class="col pt-2">
-        <%= f.submit '更新', class: "btn btn-warning" %>
+      <div class="card">
+        <div class="card-body text-muted">
+          <div class="col">
+            <h4>オイル交換走行距離</h4>
+          </div>
+          <div class="col">
+            <%= f.text_field :default_oil_change_mileage %>
+          </div>
+          <div class="col">
+            <h4>オイル交換経過日数</h4>
+          </div>
+          <div class="col">
+            <%= f.text_field :default_oil_change_days %>
+          </div>
+          <div class="col">
+            <h4>洗車経過日数</h4>
+          </div>
+          <div class="col">
+            <%= f.text_field :default_carwash_days %>
+          </div>
+          <div class="col pt-2">
+            <%= f.submit '更新', class: "btn btn-warning" %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
