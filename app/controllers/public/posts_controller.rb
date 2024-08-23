@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
       driving_distance = DrivingDistance.where(car_model_id: @post.car_model_id).order(created_at: :desc).first
       @post.distance = driving_distance.distance if driving_distance.present?
     end
-    
+
     if @post.save
       flash[:notice] = "投稿に成功しました。"
       redirect_to post_path(@post.id)
@@ -25,7 +25,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :desc).page(params[:page])
   end
 
   def edit

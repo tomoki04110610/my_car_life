@@ -5,10 +5,11 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc).page(params[:page])
   end
 
   def index
-    @users = User.where.not(email: User::GUEST_USER_EMAIL)
+    @users = User.where.not(email: User::GUEST_USER_EMAIL).order(created_at: :desc).page(params[:page])
   end
 
   def edit
