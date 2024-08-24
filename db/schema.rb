@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_20_074957) do
+ActiveRecord::Schema.define(version: 2024_08_24_120741) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 2024_08_20_074957) do
   create_table "default_values", force: :cascade do |t|
     t.integer "user_id"
     t.integer "car_model_id"
-    t.integer "default_oil_change_mileage", default: 10000
-    t.integer "default_oil_change_days", default: 30
+    t.integer "default_oil_change_mileage", default: 5000
+    t.integer "default_oil_change_days", default: 90
     t.integer "default_carwash_days", default: 30
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
