@@ -1,17 +1,36 @@
 <div class="container">
-  <div class="row d-flex justfy-content-center text-center mb-2">
+  <div class="row d-flex justify-content-center text-center mb-2">
     <div class="col-12">
       <h2>全ユーザー一覧</h2>
     </div>
   </div>
-  <ul class="row justfy-content-center text-center">
-    <% @users.each do |user| %>
-      <li class="col-12" style="list-style: none;">
-        <%= user.nickname %> - <%= user.email %>
-        <% unless user.email == 'guest@example.com' %>
-          <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？'}, class: "btn btn-danger btn-sm" %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <table class="table table-striped table-bordered text-center">
+        <thead>
+          <tr>
+            <th>ニックネーム</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.nickname %></td>
+              <td><%= user.email %></td>
+              <td><%= user.is_active ? '有効' : '無効' %></td>
+              <td>
+                <% unless user.email == 'guest@example.com' %>
+                  <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に無効化しますか？'}, class: "btn btn-danger btn-sm my-1" %>
+                  <%= link_to '完全削除', delete_permanently_admin_user_path(user), method: :delete, data: { confirm: '本当にこのユーザーを完全に削除しますか？' }, class: "btn btn-dark btn-sm my-1" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

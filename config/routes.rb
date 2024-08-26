@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  # public側
   root to: "public/homes#top"
 
     devise_scope :user do
@@ -29,14 +29,19 @@ Rails.application.routes.draw do
     resources :default_values, only: [:edit, :update]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   end
-
+  
+  # admin側
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: "admin/sessions"
   }
 
   namespace :admin do
     get "dashboards", to:"dashboards#index"
-    resources :users, only: [:destroy]
+    resources :users, only: [:destroy] do
+      member do
+        delete :delete_permanently
+      end
+    end
     resources :posts, only: [:index, :show]
     resources :post_comments, only: [:destroy]
     resources :genres, only: [:new, :create, :index, :destroy]

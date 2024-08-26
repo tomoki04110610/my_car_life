@@ -1,29 +1,33 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-12 text-center mb-4">
       <h2>新規ジャンル作成</h2>
     </div>
 
-    <div class="col-12">
-      <% if genre.errors.any? %>
-        <%= genre.errors.count %>件のエラーが発生しました
-        <ul>
-          <% genre.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+    <div class="col-lg-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <% if genre.errors.any? %>
+            <div class="alert alert-danger">
+              <ul>
+                <% genre.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
           <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class="row">
-      <%= form_with model: Genre.new, url: admin_genres_path do |f| %>
-      <div class="col-12">
-        <h4>ジャンル名</h4>
-        <%= f.text_field :genre_name %>
+
+          <%= form_with model: Genre.new, url: admin_genres_path do |f| %>
+            <div class="form-group text-muted text-center">
+              <h4>ジャンル名</h4>
+              <%= f.text_field :genre_name, class: "form-control" %>
+            </div>
+            <div class="text-center my-2">
+              <%= f.submit '登録', class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="col-12 my-2">
-        <%= f.submit '登録' , class: "btn btn-primary" %>
-      </div>
-      <% end %>
     </div>
   </div>
 </div>
