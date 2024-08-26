@@ -1,22 +1,42 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mb-4">
     <h1>いいね一覧</h1>
   </div>
 
   <div class="row justify-content-center">
-    <% @likes.each do |like| %>
-      <div class="col-12 text-center d-flex justify-content-around">
-        <p><%= like.post.title %></p>
-        <p>
-          <% max_length = 15 %>
-          <% truncated_body = like.post.body.truncate(max_length, omission: '...') %>
-          <%= truncated_body %>
-        </p>
-        <p><%= like.post.genre.genre_name %></p>
-        <p><%= image_tag like.user.get_profile_image(50,50) %></p>
-        <p><%= like.user.nickname %></p>
-        <p class="py-4"><%= link_to "投稿詳細を見る", post_path(like.post.user.id), class: "btn btn-info btn-sm" %></p>
-      </div>
-    <% end %>
+    <div class="col-12">
+      <table class="table table-striped table-bordered text-center bg-light text-muted">
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>投稿内容</th>
+            <th>ジャンル</th>
+            <th>ユーザー画像</th>
+            <th>ユーザー名</th>
+            <th>詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @likes.each do |like| %>
+            <tr>
+              <td><%= like.post.title %></td>
+              <td>
+                <% max_length = 15 %>
+                <% truncated_body = like.post.body.truncate(max_length, omission: '...') %>
+                <%= truncated_body %>
+              </td>
+              <td><%= like.post.genre.genre_name %></td>
+              <td>
+                <%= image_tag like.user.get_profile_image(50, 50) %>
+              </td>
+              <td><%= like.user.nickname %></td>
+              <td>
+                <%= link_to "投稿詳細を見る", post_path(like.post.id), class: "btn btn-info btn-sm" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

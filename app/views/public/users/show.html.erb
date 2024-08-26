@@ -1,22 +1,29 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-2">
     <h2>ユーザー詳細画面</h2>
   </div>
 
-  <div class="row mx-auto justify-content-center">
-    <div class="col-4 col-lg-4 text-center">
-      <h5>プロフィール画像</h5>
-      <%= image_tag @user.get_profile_image(200, 200) %>
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 col-lg-6 text-center text-muted mb-2">
+      <div class="card d-flex flex-column justify-content-between" style="height: 100%;">
+        <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+          <h5 class="card-title">プロフィール画像</h5>
+          <%= image_tag @user.get_profile_image(150, 150) %>
 
-      <h5>ニックネーム</h5>
-      <p><%= @user.nickname %></p>
+          <h5 class="card-title">ニックネーム</h5>
+          <p class="card-text"><%= @user.nickname %></p>
+        </div>
+    </div>
     </div>
 
-    <div class="col-4 col-lg-4 text-center">
-      <h5>車種</h5>
-      <% @user.car_models.each do |car_model| %>
-          <p><%= car_model.name %></p>
-      <% end %>
+    <div class="col-12 col-lg-6 text-center text-muted mb-2">
+      <div class="card d-flex flex-column justify-content-between" style="height: 100%;">
+        <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+          <h5 class="card-title">車種</h5>
+          <% @user.car_models.each do |car_model| %>
+            <p class="card-text"><%= car_model.name %></p>
+          <% end %>
+        </div>
     </div>
   </div>
 
@@ -51,7 +58,7 @@
     <% end %>
   </div>
 
-  <div class="row justify-content-center py-2">
+  <div class="row justify-content-center">
     <div class="col-12">
       <div class="pagination justify-content-center">
         <%= paginate @posts %>
@@ -59,8 +66,9 @@
     </div>
   </div>
 
-  <div class="row justify-content-center py-2">
-    <%= link_to "戻る", users_path, class: "btn btn-dark" %>
+  <div class="row justify-content-center">
+    <div class="col-12 text-center">
+      <%= link_to "戻る", users_path, class: "btn btn-dark" %>
+    </div>
   </div>
-
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-lg-4 col-sm-6 text-center">
-      <h2>投稿詳細</h2>
+      <h1>投稿詳細</h1>
     </div>
   </div>
 
@@ -67,17 +67,36 @@
         <p class="py-2 text-center"><%= f.submit "送信する" %></p>
       <% end %>
     </div>
-    <% @post.post_comments.each do |post_comment| %>
-      <div class="col-12 text-center d-flex justify-content-around align-items-center">
-        <p><%= image_tag post_comment.user.get_profile_image(50,50) %></p>
-        <p><%= post_comment.user.nickname %></p>
-        <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-        <p><%= post_comment.comment %></p>
-        <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm mb-2" %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="col-12 text-center">
+      <h2>コメント一覧</h2>
+    </div>
+    <div class="table-responsive mt-3">
+      <table class="table table-striped text-center bg-light text-muted">
+        <thead>
+          <tr>
+            <th>プロフィール画像</th>
+            <th>ニックネーム</th>
+            <th>日付</th>
+            <th>コメント</th>
+            <th>アクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @post.post_comments.each do |post_comment| %>
+            <tr>
+              <td><%= image_tag post_comment.user.get_profile_image(50, 50) %></td>
+              <td><%= post_comment.user.nickname %></td>
+              <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+              <td><%= post_comment.comment %></td>
+              <td>
+                <% if post_comment.user == current_user %>
+                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
