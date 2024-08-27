@@ -1,8 +1,8 @@
 <div class="container">
   <% if @model == 'user' %>
     <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-6 text-center">
-        <h3>Users search_for "<%= @content %>"</h3>
+      <div class="col-lg-4 col-sm-6 text-center mt-2">
+        <h3>ユーザー検索 "<%= @content %>"</h3>
       </div>
     </div>
 
@@ -25,10 +25,13 @@
         </div>
       <% end %>
     </div>
+    <div class="pagination justify-content-center my-2">
+      <%= paginate @records %>
+    </div>
   <% elsif @model == 'post' %>
     <div class="row justify-content-center">
-      <div class="col-lg-4 col-sm-6 text-center">
-        <h3>Posts search_for "<%= @content %>"</h3>
+      <div class="col-lg-4 col-sm-6 text-center mt-2">
+        <h3>投稿検索 "<%= @content %>"</h3>
       </div>
     </div>
 
@@ -59,6 +62,9 @@
           </div>
         </div>
       <% end %>
+    </div>
+    <div class="pagination justify-content-center my-2">
+      <%= paginate @records %>
     </div>
   <% end %>
 </div>
