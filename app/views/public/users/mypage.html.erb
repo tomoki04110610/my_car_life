@@ -76,7 +76,7 @@
                 <h4>最新の走行距離</h4>
                 <% if latest_driving_distance %>
                   <p><%= latest_driving_distance.distance %>km</p>
-                  <p>投稿日: <%= latest_driving_distance.created_at.strftime("%Y年%m月%d日") %></p>
+                  <p>登録日: <%= latest_driving_distance.created_at.strftime("%Y年%m月%d日") %></p>
                 <% else %>
                   <p>走行距離が登録されていません。</p>
                 <% end %>
