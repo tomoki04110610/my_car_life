@@ -18,4 +18,11 @@ class Public::DefaultValuesController < ApplicationController
   def default_value_params
     params.require(:default_value).permit(:default_oil_change_mileage, :default_oil_change_days, :default_carwash_days)
   end
+
+  def is_matching_login_user
+    @default_value = DefaultValue.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to mypage_path, alert: "他のユーザーのデフォルト値は編集できません"
+    end
+  end
 end
