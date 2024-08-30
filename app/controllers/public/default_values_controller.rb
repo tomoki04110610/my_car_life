@@ -1,4 +1,7 @@
 class Public::DefaultValuesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def edit
     @default_value = DefaultValue.find(params[:id])
   end
@@ -21,7 +24,7 @@ class Public::DefaultValuesController < ApplicationController
 
   def is_matching_login_user
     @default_value = DefaultValue.find(params[:id])
-    unless user.id == current_user.id
+    unless @default_value.user.id == current_user.id
       redirect_to mypage_path, alert: "他のユーザーのデフォルト値は編集できません"
     end
   end

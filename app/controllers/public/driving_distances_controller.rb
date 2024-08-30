@@ -1,4 +1,6 @@
 class Public::DrivingDistancesController < ApplicationController
+  before_action :authenticate_user
+  
   def new
     @driving_distance = current_user.driving_distances.new
     @user_car_models = current_user.car_models
@@ -13,7 +15,6 @@ class Public::DrivingDistancesController < ApplicationController
     else
       flash.now[:alert] = "走行距離登録に失敗しました。"
       @user = current_user
-      # @driving_distance = DrivingDistance.new
       @post = Post.new
       render "public/users/mypage"
     end
