@@ -23,8 +23,8 @@ class Public::DefaultValuesController < ApplicationController
   end
 
   def is_matching_login_user
-    @default_value = DefaultValue.find(params[:id])
-    unless @default_value.user.id == current_user.id
+    default_value = DefaultValue.find(params[:id])
+    unless default_value.user.id == current_user.id
       redirect_to mypage_path, alert: "他のユーザーのデフォルト値は編集できません"
     end
   end

@@ -21,7 +21,6 @@
 - 他の人がどんなメンテナンスを行っているか検索する時
 ​
 ## 設計書
-後ほど作成予定<br>
 [実装機能リスト](https://docs.google.com/spreadsheets/d/1FHeK0-9wnl81rhhS32VWPM6Vr1RX00qmzDoQNSH0STU/edit?usp=sharing)<br>
 [ER図](https://drive.google.com/file/d/1GDxDdQQAa71xxGwXjV4QfT-caq15mwz3/view?usp=sharing)
 ​
@@ -33,10 +32,7 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 後ほど検討
 - illustAC https://www.ac-illust.com/
+- photoAC https://www.photo-ac.com/
 - BEIZ images CREATE WORLDS https://www.beiz.jp/
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- アプリケーションの実装に使用したgem/bootstrapのリファレンスなどの記載は不要です。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
 - このアプリケーションはポートフォリオ作成のために制作された架空のものです。実在の店舗やブランド、施設・団体とは関係ありません。著作権に配慮し、許可を得た素材のみを使用しています。商用利用や再配布は禁止です。

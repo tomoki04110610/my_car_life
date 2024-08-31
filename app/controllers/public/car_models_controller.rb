@@ -1,4 +1,6 @@
 class Public::CarModelsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+
   def new
     @car_model = CarModel.new
   end
@@ -41,6 +43,13 @@ class Public::CarModelsController < ApplicationController
 
   def car_model_params
     params.require(:car_model).permit(:name, :user_id)
+  end
+
+  def is_matching_login_user
+    car_model = CarModel.find(params[:id])
+    unless car_model.user.id == current_user.id
+      redirect_to mypage_path, alert: "他のユーザーの登録情報は編集できません"
+    end
   end
 
 end
