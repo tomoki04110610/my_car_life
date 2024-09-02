@@ -14,11 +14,11 @@
       <% end %>
     </div>
     <div class="col-12 py-2">
-      <% unless @driving_distance.car_model_id == car_model.id %>
+      <% unless @driving_distance.car_model_id == car_model.id
         driving_distance = DrivingDistance.new
-      <% else %>
+      else
         driving_distance = @driving_distance
-      <% end %>
+      end %>
 
       <%= form_with model: driving_distance do |f| %>
         <h4 style="white-space: nowrap;"><%= car_model.name %>の走行距離</h4>
