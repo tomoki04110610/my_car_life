@@ -15,27 +15,27 @@
         <% end %>
         <div class="card-body text-secondary">
           <h5 class="card-title"><%= @post.title %></h5>
-          <p class="card-text">
+          <div class="card-text">
             <% max_length = 50 %>
             <% truncated_body = @post.body.truncate(max_length, omission: '...') %>
             <p><%= truncated_body %></p>
-          </p>
+          <div>
           <h5>ジャンル</h5>
           <p><%= @post.genre.genre_name %></p>
           <h5>ニックネーム</h5>
           <p><%= @post.user.nickname %></p>
           <% if @post.liked_by?(current_user) %>
-            <p>
+            <div>
               <%= link_to post_like_path(@post), method: :delete do %>
                 ♥<%= @post.likes.count %> いいね
               <% end %>
-            </p>
-            <% else %>
-            <p>
+            </div>
+          <% else %>
+            <div>
               <%= link_to post_like_path(@post), method: :post do %>
                 ♡<%= @post.likes.count %> いいね
               <% end %>
-            </p>
+            </div>
           <% end %>
           <p>フォロー数: <%= @post.user.followings.count %></p>
           <p>フォロワー数: <%= @post.user.followers.count %></p>
@@ -47,13 +47,13 @@
   </div>
 
   <div class="row py-2 d-flex justify-content-center">
-    <% if @post.user == current_user %>
-      <div class="col-lg-4 col-sm-6 text-center">
+    <div class="col-lg-4 col-sm-6 text-center">
+      <% if @post.user == current_user %>
         <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-success" %>
         <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-    <% end %>
-        <%= link_to "戻る", posts_path, class: "btn btn-dark" %>
-      </div>
+      <% end %>
+      <%= link_to "戻る", posts_path, class: "btn btn-dark" %>
+    </div>
   </div>
 
   <div class="row d-flex justify-content-center">

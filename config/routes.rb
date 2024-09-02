@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   # public側
   root to: "public/homes#top"
 
-    devise_scope :user do
-      post "users/guest_sign_in", to: "public/guest_user/sessions#guest_sign_in"
-    end
-    devise_for :users, controllers: {
-      sessions: 'public/sessions',
-      registrations: 'public/registrations'
-    }
+  devise_scope :user do
+    post "users/guest_sign_in", to: "public/guest_user/sessions#guest_sign_in"
+  end
+  devise_for :users, controllers: {
+    sessions: 'public/sessions',
+    registrations: 'public/registrations'
+  }
 
   scope module: :public do
     get "/mypage", to: "users#mypage", as: "mypage"

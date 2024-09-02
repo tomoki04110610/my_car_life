@@ -45,11 +45,11 @@
           <% end %>
           <div class="card-body text-secondary">
             <h5 class="card-title"><%= post.title %></h5>
-            <p class="card-text">
+            <div class="card-text">
               <% max_length = 50 %>
               <% truncated_body = post.body.truncate(max_length, omission: '...') %>
               <p><%= truncated_body %></p>
-            </p>
+            </div>
             <h5>ジャンル</h5>
             <p><%= post.genre.genre_name %></p>
             <h5>ニックネーム</h5>

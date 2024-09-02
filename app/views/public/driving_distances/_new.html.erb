@@ -3,7 +3,6 @@
     <div class="col-12">
       <h4>走行距離登録</h4>
     </div>
-
     <div class="col-12">
       <% if @driving_distance.car_model_id == car_model.id && @driving_distance.errors.any? %>
         <%= @driving_distance.errors.count %>件のエラーが発生しました
@@ -15,17 +14,17 @@
       <% end %>
     </div>
     <div class="col-12 py-2">
-      <% unless @driving_distance.car_model_id == car_model.id
-          driving_distance = DrivingDistance.new
-        else
-          driving_distance = @driving_distance
-        end %>
+      <% unless @driving_distance.car_model_id == car_model.id %>
+        driving_distance = DrivingDistance.new
+      <% else %>
+        driving_distance = @driving_distance
+      <% end %>
 
-        <%= form_with model: driving_distance do |f| %>
-          <h4 style="white-space: nowrap;"><%= car_model.name %>の走行距離</h4>
-          <p><%= f.text_field :distance %></p>
-          <p><%= f.hidden_field :car_model_id, value: car_model.id %></p>
-          <p><%= f.submit '登録', class: "btn btn-primary" %></p>
+      <%= form_with model: driving_distance do |f| %>
+        <h4 style="white-space: nowrap;"><%= car_model.name %>の走行距離</h4>
+        <p><%= f.text_field :distance %></p>
+        <p><%= f.hidden_field :car_model_id, value: car_model.id %></p>
+        <p><%= f.submit '登録', class: "btn btn-primary" %></p>
       <% end %>
     </div>
   </div>
