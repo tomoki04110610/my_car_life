@@ -9,6 +9,9 @@
     <div class="col-12 text-center mb-4">
       <h6>投稿者: <%= @post.user.nickname %></h6>
     </div>
+    <div class="col-12 text-center mb-4">
+      <%= link_to "削除", admin_post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+    </div>
   </div>
 
   <div class="row">

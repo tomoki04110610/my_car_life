@@ -42,7 +42,7 @@ Rails.application.routes.draw do
         patch :restore
       end
     end
-    resources :posts, only: [:index, :show]
+    resources :posts, only: [:index, :show, :destroy]
     resources :post_comments, only: [:destroy]
     resources :genres, only: [:new, :create, :index, :destroy]
   end
