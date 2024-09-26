@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :default_values, only: [:edit, :update]
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   end
-  
+
   # admin側
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: "admin/sessions"
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get "dashboards", to:"dashboards#index"
     resources :users, only: [:destroy] do
       member do
-        delete :delete_permanently
+        patch :restore
       end
     end
     resources :posts, only: [:index, :show]

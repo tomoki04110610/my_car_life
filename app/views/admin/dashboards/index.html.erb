@@ -23,8 +23,8 @@
               <td><%= user.is_active ? '有効' : '無効' %></td>
               <td>
                 <% unless user.email == 'guest@example.com' %>
-                  <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に無効化しますか？'}, class: "btn btn-danger btn-sm my-1" %>
-                  <%= link_to '完全削除', delete_permanently_admin_user_path(user), method: :delete, data: { confirm: '本当にこのユーザーを完全に削除しますか？' }, class: "btn btn-dark btn-sm my-1" %>
+                  <%= link_to '無効', admin_user_path(user), method: :delete, data: { confirm: '本当に無効にしますか？'}, class: "btn btn-danger btn-sm my-1" %>
+                  <%= link_to '有効', restore_admin_user_path(user), method: :patch, data: { confirm: '本当にこのユーザーを有効にしますか？' }, class: "btn btn-dark btn-sm my-1" %>
                 <% end %>
               </td>
             </tr>
