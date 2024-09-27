@@ -22,7 +22,7 @@ class Public::LikesController < ApplicationController
     if like.destroy
       flash[:notice] = "いいねを取り消しました。"
     else
-      flash[:alert] = "いいねを取り消しに失敗しました。"
+      flash[:alert] = "いいねをの取り消しに失敗しました。"
     end
     redirect_to post_path(post)
   end

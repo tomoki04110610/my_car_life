@@ -12,6 +12,7 @@
 
           <h5 class="card-title">ニックネーム</h5>
           <p class="card-text"><%= @user.nickname %></p>
+          <p><%= render "public/relationships/btn", user: @user, options: { class: "follow-link" } %></p>
         </div>
       </div>
     </div>
