@@ -8,6 +8,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validate :car_model_presence_if_needed
 
   has_one_attached :post_image
 
@@ -30,9 +31,16 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', '%' + content + '%').or(Post.where('body LIKE ?', '%' + content + '%'))
     end
   end
-  
+
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
-  
+
+  private
+
+  def car_model_presence_if_needed
+    if(genre_id == 1 || genre_id == 2) && car_model_id.blank?
+      errors.add(:base, "ジャンルがオイル交換、洗車の場合は車種を選択してください")
+    end
+  end
 end

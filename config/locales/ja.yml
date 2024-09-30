@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    models:
+      car_model: 車種
+      default_valuse: 基準値
+      driving_distance: 走行距離
+      genre: ジャンル
+      post_comment: 投稿コメント
+      post: 投稿
+    attributes:
+      car_model:
+        name: 車種名
+      default_value:
+        default_oil_change_mileage: オイル交換走行距離
+        default_oil_change_days: オイル交換経過日数
+        default_carwash_days: 洗車経過日数
+      driving_distance:
+        distance: 走行距離
+      genre:
+        genre_name: ジャンル名
+      post_comment:
+        comment: コメント
+      post:
+        title: タイトル
+        body: 本文
+        genre: ジャンル
+        genre_id: ジャンル
+        car_model_id: 車種
+    errors:
+      models:
+        post:
+          attributes:
+            car_model_id:
+             blank: を選択してください
+             car_model_presence_if_needed: ジャンルがオイル交換、洗車の場合は車種を選択してください
+    messages:
+      blank: を入力してください
