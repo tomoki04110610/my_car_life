@@ -6,8 +6,8 @@ class Post < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :likes,dependent: :destroy
 
-  validates :title, presence: true
-  validates :body, presence: true
+  validates :title, presence: true, length: {in: 1..20}
+  validates :body, presence: true, length: {in: 1..300}
   validate :car_model_presence_if_needed
 
   has_one_attached :post_image
