@@ -20,19 +20,9 @@
           <p><%= @post.genre.genre_name %></p>
           <h5>ニックネーム</h5>
           <p><%= @post.user.nickname %></p>
-          <% if @post.liked_by?(current_user) %>
-            <div>
-              <%= link_to post_like_path(@post), method: :delete do %>
-                ♥<%= @post.likes.count %> いいね
-              <% end %>
-            </div>
-          <% else %>
-            <div>
-              <%= link_to post_like_path(@post), method: :post do %>
-                ♡<%= @post.likes.count %> いいね
-              <% end %>
-            </div>
-          <% end %>
+          <p>
+            <%= render "public/likes/btn", post: @post %>
+          </p>
           <p>フォロー数: <%= @post.user.followings.count %></p>
           <p>フォロワー数: <%= @post.user.followers.count %></p>
           <p><%= render "public/relationships/btn", user: @post.user, options: { class: "follow-link" } %></p>

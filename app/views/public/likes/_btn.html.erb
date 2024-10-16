@@ -1,0 +1,13 @@
+<% if post.liked_by?(current_user) %>
+  <div>
+    <%= link_to post_like_path(post), method: :delete do %>
+      ♥<%= post.likes.count %> いいね
+    <% end %>
+  </div>
+<% else %>
+  <div>
+    <%= link_to post_like_path(post), method: :post do %>
+      ♡<%= post.likes.count %> いいね
+    <% end %>
+  </div>
+<% end %>
