@@ -1,0 +1,2 @@
+$("#like_buttons_<%= @post.id %>").html("<%= j render('public/likes/btn', post: @post) %>");
+$("#flash_messages").html("<%= j render('layouts/flash') %>");
