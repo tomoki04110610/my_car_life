@@ -29,7 +29,7 @@
               <td>
                 <%= image_tag like.user.get_profile_image(50, 50) %>
               </td>
-              <td><%= like.user.nickname %></td>
+              <td><%= like.post.user.nickname %></td>
               <td>
                 <%= link_to "投稿詳細を見る", post_path(like.post.id), class: "btn btn-info btn-sm" %>
               </td>
